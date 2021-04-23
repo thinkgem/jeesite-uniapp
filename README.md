@@ -26,7 +26,7 @@ uView UI，是 uni-app 生态最优秀的 UI 框架，全面的组件和便捷�
 * 按需引入，精简打包体积。
 * 移动端完整开源。
 
-## 功能
+## 功能列表
 
 * 账号登录、记住我（下次免登录）
 * 自助服务：找回密码功能、账号注册功能
@@ -35,11 +35,13 @@ uView UI，是 uni-app 生态最优秀的 UI 框架，全面的组件和便捷�
 * 工作台功能列表主页、消息列表主页
 * 增删改查示例
 
-## 演示
+## 快速体验
 
-H5 APP 端访问地址：<a href="https://demo.jeesite.com/app" target="blank">https://demo.jeesite.com/app</a>
+1、H5 APP 端访问地址：<a href="https://demo.jeesite.com/app" target="blank">https://demo.jeesite.com/app</a> （最新演示）
+<br>获得H5最佳体验，操作方法：Chrome 为例，在浏览器上按 F12 打开“开发者工具”，点击该工具左上角第二个按钮“Toggle device toolbar”，
+显示“切换设备工具栏”，然后在该工具栏上点击“Responsive”下拉选择“iPhone6/7/8”，再按“F5”刷新页面，即可。
 
-微信小程序端：通过**微信**扫码，查看最佳的演示效果。<br><br>
+2、微信小程序端：通过**微信**扫码（最佳体验，但不是最新演示，更新延迟）<br><br>
 <img src="https://jeesite.com/assets/images/wx_app.jpg" width="220" height="220" >
 
 ## 获取源码
