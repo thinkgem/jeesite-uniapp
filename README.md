@@ -45,5 +45,27 @@ uView UI，是 uni-app 生态最优秀的 UI 框架，全面的组件和便捷�
 <img src="https://jeesite.com/assets/images/wx_app.jpg" width="220" height="220" >
 
 ## 获取源码
+<br>
 
-* 关注我，敬请期待
+* 五步操作轻松获取（步骤如下）：
+
+1、当前网页，点击右上角【Star】按钮收藏并截图<br>
+2、<a href="https://gitee.com/thinkgem/jeesite4" target="blank">https://gitee.com/thinkgem/jeesite4</a>
+打开网页，点击右上角【Star】按钮收藏并截图<br>
+3、<a href="https://gitee.com/thinkgem/jeesite4-cloud" target="blank">https://gitee.com/thinkgem/jeesite4-cloud</a>
+打开网页，点击右上角【Star】按钮收藏并截图<br>
+4、使用微信扫描下面二维码，关注 JeeSite微信公众号并截图<br>&nbsp; &nbsp; 
+<img src="https://jeesite.com/assets/images/mp.png" width="220" height="220"><br>
+5、<a href="https://gitee.com/thinkgem/jeesite4-case" target="blank">https://gitee.com/thinkgem/jeesite4-case</a>
+打开网页，分享您的案例并截图<br>
+
+* 领取方法：
+
+方式一：满足前 5 条，五张截图为一组，一组即可免费获取。<br>
+方式二：满足前 4 条，四张截图为一组，八组即可免费获取。<br>
+
+5月20日 活动截止，当天发送源码到你的邮箱，过期勿扰。
+
+联系 QQ：<a href="http://wpa.qq.com/msgrd?v=3&uin=1766571055&site=qq&menu=yes">1766571055</a>
+
+提供 gitee 的 账号id、账号名称、邮箱地址、并发送上述截图，免费获取
