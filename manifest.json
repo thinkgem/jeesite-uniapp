@@ -3,7 +3,7 @@
  * Copyright (c) 2013-Now http://jeesite.com All rights reserved.
  */
 {
-    "name" : "jeesite4-uniapp",
+    "name" : "JeeSite",
     "appid" : "__UNI__841DCAE",
     "description" : "JeeSite快速开发平台",
     "versionName" : "4.3.0",
@@ -92,6 +92,9 @@
                         "spotlight@3x" : "unpackage/res/icons/120x120.png"
                     }
                 }
+            },
+            "splashscreen" : {
+                "androidStyle" : "common"
             }
         }
     },

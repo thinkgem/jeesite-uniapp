@@ -2,7 +2,7 @@
 	<view class="wrap">
 		<js-lang title="home.title" :showBtn="true"></js-lang>
 		<u-swiper :height="300" :list="imgList" :title="false" @click="imgListClick"></u-swiper>
-		<view class="toolbar">
+		<view class="toolbar u-m-b-20">
 			<u-grid class="grid" :col="3" :border="false">
 				<u-grid-item :index="0" @click="navTo('/pages/testData/index')">
 					<u-badge :count="todoCount"></u-badge>
@@ -19,7 +19,7 @@
 				</u-grid-item>
 			</u-grid>
 		</view>
-		<u-collapse class="box u-p-t-20 u-p-b-5" :accordion="false" :arrow="true">
+		<u-collapse class="box u-p-b-5" :accordion="false" :arrow="true">
 			<view class="item" v-for="(menu, index) in menuList" :key="menu.menuCode">
 				<u-collapse-item :open="true">
 					<view class="title" slot="title">
