@@ -119,7 +119,9 @@ export default {
 		loadData() {
 			if (this.dictType != ''){
 				this.$u.api.dictData({dictType: this.dictType}).then(res => {
-					this.setItems(res);
+					if (res instanceof Array){
+						this.setItems(res);
+					}
 				});
 			}else{
 				this.setItems(this.items);

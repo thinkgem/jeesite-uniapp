@@ -50,7 +50,7 @@ export default {
 	},
 	onLoad() {
 		this.$u.api.index({loginCheck: true}).then(res => {
-			if (res.result !== 'login'){
+			if (typeof res === 'object' && res.result !== 'login'){
 				uni.reLaunch({
 					url: '/pages/sys/home/index'
 				});
@@ -90,7 +90,7 @@ export default {
 				param_remember: this.remember
 			})
 			.then(res => {
-				this.$u.toast(res.message);
+				this.$u.toast(res.message || '未连接服务器');
 				if (res.result == 'true') {
 					setTimeout(() => {
 						uni.reLaunch({

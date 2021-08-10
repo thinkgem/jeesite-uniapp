@@ -72,7 +72,9 @@ export default {
 		loadData(){
 			if (this.dictType != ''){
 				this.$u.api.dictData({dictType: this.dictType}).then(res => {
-					this.options.items = res;
+					if (res instanceof Array){
+						this.options.items = res;
+					}
 				});
 			}else{
 				this.options.items = this.items;
