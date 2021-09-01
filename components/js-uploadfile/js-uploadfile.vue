@@ -70,6 +70,7 @@ export default {
 			options: {
 				value: {},
 				action: '',
+				header: {},
 				formData: {
 					fileMd5: '',
 					fileName: '',
@@ -118,7 +119,7 @@ export default {
 			if (this.options.formData.bizKey != ''){
 				let baseUrl = this.vuex_config.baseUrl;
 				let adminPath = this.vuex_config.adminPath;
-				this.$u.post(adminPath+'/file/fileList', {
+				this.$u.post(adminPath + '/file/fileList', {
 					bizKey: this.options.formData.bizKey,
 					bizType: this.options.formData.bizType,
 				}).then(res => {
@@ -147,6 +148,7 @@ export default {
 			let formData = this.options.formData;
 			let baseUrl = this.vuex_config.baseUrl;
 			let adminPath = this.vuex_config.adminPath;
+			this.$u.http.interceptor.request(this.options);
 			return new Promise((resolve, reject) => {
 				try{
 					uni.request({
@@ -163,9 +165,11 @@ export default {
 								}else{
 									spark.append(buffer);
 								}
+								formData.fileEntityId = '';
+								formData.fileUploadId = '';
 								formData.fileMd5 = spark.end();
 								formData.fileName = item.file.name;
-								this.$u.post(adminPath+'/file/upload', formData).then(res => {
+								this.$u.post(adminPath + '/file/upload', formData).then(res => {
 									// console.log(res)
 									// 文件已经上传，启用秒传
 									if (res.result == 'true' && res.fileUpload){
