@@ -95,7 +95,7 @@ export default {
 				mode: 'single-column',
 				items: this.items,
 				itemLabel: this.itemLabel || 'name',
-				itemValue: this.itemValue || this.tree ? 'id' : 'value',
+				itemValue: this.itemValue || (this.tree ? 'id' : 'value'),
 				currentIndex: [],
 				indexMap: {}
 			}
@@ -119,9 +119,10 @@ export default {
 		loadData() {
 			if (this.dictType != ''){
 				this.$u.api.dictData({dictType: this.dictType}).then(res => {
-					if (res instanceof Array){
-						this.setItems(res);
+					if (typeof res === 'object' && res.result === 'login'){
+						return;
 					}
+					this.setItems(res);
 				});
 			}else{
 				this.setItems(this.items);
@@ -197,7 +198,7 @@ export default {
 			if (!this.tree){
 				this.options.currentIndex = currentIndexes;
 			}
-			console.log(this.options.value, this.options.label)
+			//console.log(this.options.value, this.options.label)
 			this.$emit('input', this.options.value);
 			this.$emit('label-input', this.options.label);
 		}

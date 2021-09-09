@@ -10,7 +10,7 @@ const config = {
 	companyName: 'ThinkGem',
 	
 	// 产品版本号
-	productVersion: 'V4.3.0',
+	productVersion: 'V4.3.1',
 	
 	// 版本检查标识
 	appCode: 'android',
@@ -27,9 +27,9 @@ const config = {
 config.baseUrl = 'https://demo.jeesite.com/js';
 
 // 建议：打开下面注释，方便根据环境，自动设定服务地址
-// if (process.env.NODE_ENV === 'development'){
-// 	// config.baseUrl = '/../js'; // 代理模式 vue.config.js 中找到 devServer 设置的地址
-// 	config.baseUrl = 'http://127.0.0.1:8980/js';
-// }
+if (process.env.NODE_ENV === 'development'){
+	// config.baseUrl = '/../js'; // 代理模式 vue.config.js 中找到 devServer 设置的地址
+	config.baseUrl = 'http://127.0.0.1:8980/js';
+}
 
 export default config;
