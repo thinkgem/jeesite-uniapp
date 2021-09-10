@@ -124,7 +124,7 @@ export default {
 					bizType: this.options.formData.bizType,
 				}).then(res => {
 					let lists = [];
-					if (!(typeof res === 'object' && res.result === 'login')){
+					if (!(typeof res === 'object' && (res.result === 'login' || res.result === 'false'))){
 						for (let i in res){
 							let f = res[i];
 							lists.push({
