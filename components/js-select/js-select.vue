@@ -201,6 +201,7 @@ export default {
 			//console.log(this.options.value, this.options.label)
 			this.$emit('input', this.options.value);
 			this.$emit('label-input', this.options.label);
+			this.$emit('confirm', this.options.value, this.options.label);
 		}
 	}
 }

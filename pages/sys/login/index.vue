@@ -18,6 +18,10 @@
 				<input class="u-input" type="text" v-model="validCode" maxlength="4" placeholder="验证码" />
 				<u-image class="img-valid-code" width="300rpx" height="90rpx" :src="imgValidCodeSrc" @click="refreshImgValidCode()"></u-image>
 			</view>
+			<view class="list-call base-url">
+				<u-icon class="u-icon" size="40" name="setting" style="padding-right:15rpx;"></u-icon>
+				<js-select v-model="baseUrl" :items="baseUrlList" placeholder="快速切换服务器地址" @confirm="updateBaseUrl"></js-select>
+			</view>
 		</view>
 		<view class="button" hover-class="button-hover" @click="submit()"><text>{{$t('login.loginButton')}}</text></view>
 		<view class="footer">
@@ -45,7 +49,14 @@ export default {
 			remember: true,
 			isValidCodeLogin: false,
 			validCode: '',
-			imgValidCodeSrc: null
+			imgValidCodeSrc: null,
+			baseUrlList: [{
+				name: 'https://demo.jeesite.com',
+				value: 'https://demo.jeesite.com/js',
+			},{
+				name: 'http://127.0.0.1:8980',
+				value: 'http://127.0.0.1:8980/js',
+			}],
 		};
 	},
 	onLoad() {
@@ -109,6 +120,12 @@ export default {
 		},
 		qqLogin() {
 			this.$u.toast('QQ 登录');
+		},
+		updateBaseUrl() {
+			this.$u.http.setConfig({
+				baseUrl: this.baseUrl
+			});
+			this.$u.toast('切换成功！');
 		}
 	}
 };
@@ -131,6 +148,10 @@ export default {
 	border-radius: 50%;
 }
 
+.button {
+	margin: 30rpx auto 0;
+}
+
 .footer {
 	display: flex;
 	flex-direction: row;
@@ -141,7 +162,7 @@ export default {
 	height: 40rpx;
 	line-height: 40rpx;
 	font-size: 35rpx;
-	margin-top: 80rpx;
+	margin-top: 60rpx;
 }
 
 .footer text {
@@ -154,7 +175,7 @@ export default {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	margin: 80rpx 100rpx;
+	margin: 55rpx 100rpx;
 
 	image {
 		height: 100rpx;
