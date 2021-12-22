@@ -143,65 +143,89 @@ export default {
 		},
 		// 上传之前，验证秒传、是否继续上传等
 		beforeUpload(index, lists) {
+			let self = this;
 			let item = lists[index];
 			let upload = this.upload;
 			let formData = this.options.formData;
 			let baseUrl = this.vuex_config.baseUrl;
 			let adminPath = this.vuex_config.adminPath;
-			this.$u.http.interceptor.request(this.options);
+			self.$u.http.interceptor.request(this.options);
 			return new Promise((resolve, reject) => {
 				try{
+					function uploadFile(arrayBuffer){
+						let buffer = arrayBuffer;
+						let size = 10 * 1024 * 1024;
+						let spark = new SparkMD5.ArrayBuffer();
+						if (buffer.byteLength > size){
+							spark.append(buffer.slice(0, size));;
+						}else{
+							spark.append(buffer);
+						}
+						formData.fileEntityId = '';
+						formData.fileUploadId = '';
+						formData.fileMd5 = spark.end();
+						formData.fileName = item.file.name;
+						// console.log('formData' + JSON.stringify(formData));
+						self.$u.post(adminPath + '/file/upload', formData).then(res => {
+							// console.log(res)
+							// 文件已经上传，启用秒传
+							if (res.result == 'true' && res.fileUpload){
+								item.fileUploadId = res.fileUpload.id;
+								item.progress = 100;
+								item.error = false;
+								reject(res);
+							}
+							// 文件未上传过，继续上传文件
+							else if (res.fileUploadId && res.fileEntityId){
+								formData.fileUploadId = res.fileUploadId;
+								formData.fileEntityId = res.fileEntityId;
+								item.fileUploadId = res.fileUploadId;
+								resolve();
+							}
+							// 未知错误，提示服务端返回的信息
+							else {
+								uni.showModal({title: '提示', content: res.message });
+								reject(res);
+							}
+						}).catch(err => {
+							console.error(err);
+							reject(err);
+						})
+					}
+					// #ifdef APP-PLUS
+					plus.io.requestFileSystem( plus.io.PRIVATE_WWW, function(fs){
+						fs.root.getFile(item.url, {create: false}, function(fileEntry){
+							fileEntry.file(function(file){
+								// console.log("getFile:" + JSON.stringify(file))
+								var fileReader = new plus.io.FileReader();
+								fileReader.readAsText(file, 'utf-8');
+								fileReader.onloadend = function(evt) {
+									uploadFile(evt.target.result);
+								}
+								fileReader.onerror = function(error) {
+									reject(error);
+								}
+							}, reject);
+						}, reject);
+					} );
+					// #endif
+					// #ifndef APP-PLUS
 					uni.request({
 						url: item.url,
 						responseType: 'arraybuffer',
 						complete: res => {
 							// console.log(res)
 							if (res.statusCode == 200) {
-								let buffer = res.data;
-								let size = 10 * 1024 * 1024;
-								let spark = new SparkMD5.ArrayBuffer();
-								if (buffer.byteLength > size){
-									spark.append(buffer.slice(0, size));;
-								}else{
-									spark.append(buffer);
-								}
-								formData.fileEntityId = '';
-								formData.fileUploadId = '';
-								formData.fileMd5 = spark.end();
-								formData.fileName = item.file.name;
-								this.$u.post(adminPath + '/file/upload', formData).then(res => {
-									// console.log(res)
-									// 文件已经上传，启用秒传
-									if (res.result == 'true' && res.fileUpload){
-										item.fileUploadId = res.fileUpload.id;
-										item.progress = 100;
-										item.error = false;
-										reject();
-									}
-									// 文件未上传过，继续上传文件
-									else if (res.fileUploadId && res.fileEntityId){
-										formData.fileUploadId = res.fileUploadId;
-										formData.fileEntityId = res.fileEntityId;
-										item.fileUploadId = res.fileUploadId;
-										resolve();
-									}
-									// 未知错误，提示服务端返回的信息
-									else {
-										uni.showModal({title: '提示', content: res.message });
-										reject();
-									}
-								}).catch(err => {
-									console.error(err);
-									reject();
-								})
+								uploadFile(res.data);
 							}else{
-								reject();
+								reject(res);
 							}
 						}
 					})
+					// #endif
 				}catch(err){
 					console.error(err);
-					reject();
+					reject(err);
 				}
 			})
 		},

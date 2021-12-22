@@ -1,7 +1,7 @@
 <template>
 	<view class="wrap">
 		<u-form class="form" :model="model" :rules="rules" ref="uForm" label-position="left">
-			<u-form-item label="编号" prop="id" label-width="180">
+			<u-form-item label="编号" prop="id" label-width="180" v-if="model.id">
 				<u-input placeholder="请输入编号" v-model="model.id" type="text" maxlength="64"></u-input>
 			</u-form-item>
 			<u-form-item label="单行文本" prop="testInput" label-width="180">
@@ -24,7 +24,7 @@
 				<js-checkbox v-model="model.testCheckbox" dict-type="sys_menu_type"></js-checkbox>
 			</u-form-item>
 			<u-form-item label="机构选择" prop="testOffice" label-width="180">
-				<js-select v-model="model.testOffice.officeCode" :items="officeSelectList" placeholder="请选择人员" :tree="true"
+				<js-select v-model="model.testOffice.officeCode" :items="officeSelectList" placeholder="请选择机构" :tree="true"
 					:label-value="model.testOffice.officeName" @label-input="model.testOffice.officeName = $event"></js-select>
 			</u-form-item>
 			<u-form-item label="人员选择" prop="testUser" label-width="180">
@@ -80,11 +80,9 @@ export default {
 		};
 	},
 	onLoad(params){
-		if (params.id){
-			this.$u.api.testData.form({id: params.id}).then(res => {
-				Object.assign(this.model, res.testData);
-			});
-		}
+		this.$u.api.testData.form(params).then(res => {
+			Object.assign(this.model, res.testData);
+		});
 	},
 	onReady() {
 		this.$refs.uForm.setRules(this.rules);
@@ -99,7 +97,7 @@ export default {
 	},
 	methods: {
 		submit() {
-			console.log(this.model)
+			//console.log(this.model)
 			this.$refs.uForm.validate(valid => {
 				if (valid) {
 					this.$u.api.testData.save(this.model).then(res => {
@@ -109,6 +107,7 @@ export default {
 							showCancel: false,
 							success: function () {
 								if (res.result == 'true') {
+									uni.setStorageSync('refreshList', true);
 									uni.navigateBack();
 								}
 							}

@@ -3,6 +3,8 @@
 		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
 	},
 	"pages": [
+		
+		/* 登录 */
 		{
 			"path": "pages/sys/login/index",
 			"style": {
@@ -21,24 +23,16 @@
 				"navigationBarTitleText": "注册账号"
 			}
 		},
-		{
-			"path": "pages/sys/msg/index",
-			"style": {
-				"navigationBarTitleText": "消息提醒"
-			}
-		},
-		{
-			"path": "pages/sys/msg/form",
-			"style": {
-				"navigationBarTitleText": "查看详情"
-			}
-		},
+		
+		/* 主页 */
 		{
 			"path": "pages/sys/home/index",
 			"style": {
 				"navigationBarTitleText": "工作台"
 			}
 		},
+		
+		/* 用户 */
 		{
 			"path": "pages/sys/user/index",
 			"style": {
@@ -90,6 +84,22 @@
 				"navigationBarTitleText": "关于我们"
 			}
 		},
+		
+		/* 消息 */
+		{
+			"path": "pages/sys/msg/index",
+			"style": {
+				"navigationBarTitleText": "消息提醒"
+			}
+		},
+		{
+			"path": "pages/sys/msg/form",
+			"style": {
+				"navigationBarTitleText": "查看详情"
+			}
+		},
+		
+		/* 增删改查例子 */
 		{
 			"path": "pages/testData/form",
 			"style": {
@@ -102,6 +112,8 @@
 				"navigationBarTitleText": "增删改查"
 			}
 		},
+		
+		/* Common */
 		{
 			"path": "pages/common/webview",
 			"style": {

@@ -19,8 +19,7 @@ export default {
 		};
 	},
 	onLoad(params) {
-		this.webviewUrl = params.url;
-		// this.webviewUrl = `http://127.0.0.1:8980/js/a/bpm/bpmCategory/index/process?__sid=${this.vuex_token}&__cookie=true`;
+		this.webviewUrl = decodeURIComponent(params.url);
 		if (params.title != ''){
 			uni.setNavigationBarTitle({
 				title: params.title

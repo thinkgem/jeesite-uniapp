@@ -44,6 +44,12 @@ export default {
 	onLoad() {
 		this.loadList();
 	},
+	onShow() {
+		if (uni.getStorageSync('refreshList') === true){
+			uni.removeStorageSync('refreshList');
+			this.search('');
+		}
+	},
 	methods: {
 		loadMore() {
 			this.loadStatus = "loading";

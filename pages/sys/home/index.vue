@@ -4,16 +4,16 @@
 		<u-swiper :height="300" :list="imgList" :title="false" @click="imgListClick"></u-swiper>
 		<view class="toolbar u-m-b-20">
 			<u-grid class="grid" :col="3" :border="false">
-				<u-grid-item :index="0" @click="navTo('/pages/testData/index')">
+				<u-grid-item :index="0" @click="navTo('/pages/bpm/myTaskTodo')">
 					<u-badge :count="todoCount"></u-badge>
 					<u-icon class="grid-icon" name="clock" :size="80" :style="{ color: '#ea9a44' }"></u-icon>
 					<view class="grid-text">待办任务</view>
 				</u-grid-item>
-				<u-grid-item :index="1" @click="navTo('/pages/testData/index')">
+				<u-grid-item :index="1" @click="navTo('/pages/bpm/myTaskHistory')">
 					<u-icon class="grid-icon" name="checkmark-circle" :size="80" :style="{ color: '#47cb66' }"></u-icon>
 					<view class="grid-text">已办任务</view>
 				</u-grid-item>
-				<u-grid-item :index="2" @click="navTo('/pages/testData/index')">
+				<u-grid-item :index="2" @click="navTo('/pages/bpm/myRuntime')">
 					<u-icon class="grid-icon" name="order" :size="80" :style="{ color: '#5a98ea' }"></u-icon>
 					<view class="grid-text">我相关的</view>
 				</u-grid-item>
@@ -55,7 +55,7 @@ export default {
 				{image: '/static/jeesite/banner/3.svg'}
 			],
 			
-			todoCount: 3,
+			todoCount: 0,
 			
 			menuList: [
 				{
@@ -80,12 +80,12 @@ export default {
 							url: '/pages/testData/form',
 						},
 						{
-							menuCode: 'a12',
-							menuName: '查询',
-							menuIcon: 'search',
+							menuCode: 'a10',
+							menuName: '请假',
+							menuIcon: 'calendar',
 							menuColor: '',
-							url: '/pages/testData/index',
-						}
+							url: '/pages/oa/oaLeave/index',
+						},
 					]
 				},
 				{
@@ -194,12 +194,21 @@ export default {
 		};
 	},
 	onLoad() {
-		
+		//this.refreshCount();
+	},
+	onShow() {
+		this.refreshCount();
 	},
 	methods: {
 		navTo(url) {
 			uni.navigateTo({
 				url: url
+			});
+		},
+		refreshCount() {
+			// 获取待办个数
+			this.$u.api.bpm.myTaskList({status:1,pageSize:1}).then(res => {
+				this.todoCount = res.count || 0;
 			});
 		},
 		imgListClick(index) {

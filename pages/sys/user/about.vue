@@ -13,8 +13,8 @@
 			<navigator url="/pages/common/webview?title=公司首页&url=https://jeesite.com" open-type="navigate">
 				<u-cell-item :arrow="true" title="公司首页">https://jeesite.com</u-cell-item>
 			</navigator>
-			<navigator url="/pages/common/webview?title=服务条款&url=https://gitee.com/thinkgem/jeesite4/blob/master/terms.md" open-type="navigate">
-				<u-cell-item :arrow="true" title="服务条款">https://s.jeesite.com</u-cell-item>
+			<navigator url="/pages/common/webview?title=服务条款&url=http://s.jeesite.com/" open-type="navigate">
+				<u-cell-item :arrow="true" title="服务条款">http://s.jeesite.com/</u-cell-item>
 			</navigator>
 		</u-cell-group>
 		<view class="copyright">

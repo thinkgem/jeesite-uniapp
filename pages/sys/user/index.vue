@@ -31,24 +31,31 @@
 				</navigator>
 			</view>
 		</view> -->
-		<view class="list u-p-t-10 u-p-b-20">
+		<view class="u-p-t-10 u-p-b-20">
 			<view class="u-m-t-20">
 				<u-cell-group>
-					<u-cell-item icon="account" :iconSize="iconSize" :iconStyle="{color:'#266bff'}" title="个人信息" @click="navTo('info')"></u-cell-item>
-					<u-cell-item icon="lock" :iconSize="iconSize" :iconStyle="{ color: '#1bca6a' }" title="修改密码" @click="navTo('pwd')"></u-cell-item>
-					<u-cell-item icon="question-circle" :iconSize="iconSize" :iconStyle="{ color: '#d99e59' }" title="帮助中心" @click="navTo('help')"></u-cell-item>
+					<u-cell-item icon="account" :iconSize="iconSize" :iconStyle="{color:'#266bff'}"
+						title="个人信息" @click="navTo('info')"></u-cell-item>
+					<u-cell-item icon="lock" :iconSize="iconSize" :iconStyle="{ color: '#1bca6a' }"
+						title="修改密码" @click="navTo('pwd')"></u-cell-item>
+					<u-cell-item icon="question-circle" :iconSize="iconSize" :iconStyle="{ color: '#d99e59' }"
+						title="帮助中心" @click="navTo('help')"></u-cell-item>
 				</u-cell-group>
 			</view>
 			<view class="u-m-t-20">
 				<u-cell-group>
-					<u-cell-item icon="heart" :iconSize="iconSize" :iconStyle="{ color: '#0a1aff' }" title="关于我们" @click="navTo('about')"></u-cell-item>
-					<u-cell-item icon="kefu-ermai" :iconSize="iconSize" :iconStyle="{ color: '#a571fd' }" title="意见反馈" @click="navTo('comment')"></u-cell-item>
-					<u-cell-item icon="clock" :iconSize="iconSize" :iconStyle="{ color: '#ff6f27' }" title="检查更新" @click="upgrade()"></u-cell-item>
+					<u-cell-item icon="heart" :iconSize="iconSize" :iconStyle="{ color: '#0a1aff' }"
+						title="关于我们" @click="navTo('about')"></u-cell-item>
+					<u-cell-item icon="kefu-ermai" :iconSize="iconSize" :iconStyle="{ color: '#a571fd' }"
+						title="意见反馈" @click="navTo('comment')"></u-cell-item>
+					<u-cell-item icon="clock" :iconSize="iconSize" :iconStyle="{ color: '#ff6f27' }"
+						title="检查更新" @click="upgrade()"></u-cell-item>
 				</u-cell-group>
 			</view>
 			<view class="u-m-t-20">
 				<u-cell-group>
-					<u-cell-item icon="setting" :iconSize="iconSize" :iconStyle="{ color: '#1a94ff' }" title="系统设置" @click="navTo('setting')"></u-cell-item>
+					<u-cell-item icon="setting" :iconSize="iconSize" :iconStyle="{ color: '#1a94ff' }"
+						title="系统设置" @click="navTo('setting')"></u-cell-item>
 				</u-cell-group>
 			</view>
 		</view>

@@ -10,7 +10,10 @@
     "type": "git",
     "url": "git+https://gitee.com/thinkgem/jeesite4-uniapp.git"
   },
-  "keywords": ["JeeSite", "快速开发平台"],
+  "keywords": [
+    "JeeSite",
+    "快速开发平台"
+  ],
   "author": "ThinkGem",
   "license": "MIT",
   "bugs": {

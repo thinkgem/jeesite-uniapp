@@ -37,7 +37,7 @@
 		</view>
 		<view class="agreement">
 			<u-checkbox v-model="terms">我已阅读并同意</u-checkbox>
-			<navigator url="/pages/common/webview?title=软件用户协议&url=https://gitee.com/thinkgem/jeesite4/blob/master/README.md"
+			<navigator url="/pages/common/webview?title=软件用户协议&url=https://jeesite.com/docs/support/"
 				open-type="navigate">《软件用户协议》</navigator>
 		</view>
 		<view class="button" hover-class="button-hover" @click="submit()"><text>注册账号</text></view>
