@@ -46,6 +46,8 @@ uView UI，是 uni-app 生态最优秀的 UI 框架，全面的组件和便捷�
 2、微信小程序端：通过**微信**扫码（最佳体验，但不是最新演示，更新延迟）<br><br>
 <img src="https://jeesite.com/assets/images/wx_app.jpg" width="220" height="220" >
 
+3、安卓 Android 安装包，点击下载：[JeeSite4.3.1.apk](https://gitee.com/thinkgem/jeesite4/attach_files/925161/download)
+
 ## 快速运行
 
 1、下载并安装：<a href="https://www.dcloud.io/hbuilderx.html" target="blank">集成开发环境 HBuilderX</a>
