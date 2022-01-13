@@ -153,6 +153,26 @@ export default {
 		});
 		uni.$on('uAvatarCropper', path => {
 			this.avatarBase64 = path;
+			if (this.avatarBase64 != '' && !this.avatarBase64.startsWith('data:')){
+				// #ifdef APP-PLUS
+				let self = this, fileUrl = this.avatarBase64;
+				plus.io.resolveLocalFileSystemURL(path, function(entry) {
+					entry.file(function(file) {
+						var fileReader = new plus.io.FileReader()
+						fileReader.onload = function(data) {
+							// console.log(data.target.result);
+							self.avatarBase64 = data.target.result;
+						}
+						fileReader.onerror = function(error) { }
+						fileReader.readAsDataURL(file)
+					}, function(error) { })
+				}, function(error) { });
+				// #endif
+				// #ifndef APP-PLUS
+				this.avatarBase64 = 'data:image/jpeg;base64,' + uni.getFileSystemManager()
+						.readFileSync(this.avatarBase64, "base64");
+				// #endif
+			}
 		})
 	},
 	computed: {
@@ -182,14 +202,9 @@ export default {
 		submit() {
 			this.$refs.uForm.validate(valid => {
 				if (valid) {
-					// #ifdef MP-WEIXIN || MP-TOUTIAO
-					if (this.avatarBase64 != '' && !this.avatarBase64.startsWith('data:')){
-						this.avatarBase64 = 'data:image/jpeg;base64,' + uni.getFileSystemManager()
-								.readFileSync(this.avatarBase64, "base64")
-					}
-					// #endif
 					this.model.avatarBase64 = this.avatarBase64;
 					this.$u.api.user.infoSaveBase(this.model).then(res => {
+						this.$u.api.index(); // 保存后更新用户信息
 						uni.showModal({
 							title: '提示',
 							content: res.message,

@@ -193,10 +193,11 @@ export default {
 						})
 					}
 					// #ifdef APP-PLUS
-					plus.io.requestFileSystem( plus.io.PRIVATE_WWW, function(fs){
+					plus.io.requestFileSystem(plus.io.PRIVATE_WWW, function(fs){
 						fs.root.getFile(item.url, {create: false}, function(fileEntry){
 							fileEntry.file(function(file){
 								// console.log("getFile:" + JSON.stringify(file))
+								item.file.name = file.name;
 								var fileReader = new plus.io.FileReader();
 								fileReader.readAsText(file, 'utf-8');
 								fileReader.onloadend = function(evt) {

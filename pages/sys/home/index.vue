@@ -206,10 +206,7 @@ export default {
 			});
 		},
 		refreshCount() {
-			// 获取待办个数
-			this.$u.api.bpm.myTaskList({status:1,pageSize:1}).then(res => {
-				this.todoCount = res.count || 0;
-			});
+			this.todoCount = 3;
 		},
 		imgListClick(index) {
 			console.log(`点击了第${index + 1}页图片`)
