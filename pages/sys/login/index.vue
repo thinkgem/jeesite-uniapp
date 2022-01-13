@@ -50,9 +50,13 @@ export default {
 			isValidCodeLogin: false,
 			validCode: '',
 			imgValidCodeSrc: null,
+			baseUrl: null,
 			baseUrlList: [{
 				name: 'https://demo.jeesite.com',
 				value: 'https://demo.jeesite.com/js',
+			},{
+				name: 'http://192.168.0.11:8980',
+				value: 'http://192.168.0.11:8980/js',
 			},{
 				name: 'http://127.0.0.1:8980',
 				value: 'http://127.0.0.1:8980/js',
@@ -122,6 +126,8 @@ export default {
 			this.$u.toast('QQ 登录');
 		},
 		updateBaseUrl() {
+			this.vuex_config.baseUrl = this.baseUrl;
+			this.$u.vuex('vuex_config', this.vuex_config);
 			this.$u.http.setConfig({
 				baseUrl: this.baseUrl
 			});
