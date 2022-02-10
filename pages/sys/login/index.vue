@@ -43,24 +43,24 @@ import base64 from '@/common/base64.js';
 export default {
 	data() {
 		return {
-			username: 'system',
+			username: 'user1',
 			password: 'admin',
 			showPassword: false,
 			remember: true,
 			isValidCodeLogin: false,
 			validCode: '',
 			imgValidCodeSrc: null,
-			baseUrl: null,
+			baseUrl: '',
 			baseUrlList: [{
 				name: 'https://demo.jeesite.com',
-				value: 'https://demo.jeesite.com/js',
+				value: 'https://demo.jeesite.com/js'
 			},{
 				name: 'http://192.168.0.11:8980',
-				value: 'http://192.168.0.11:8980/js',
+				value: 'http://192.168.0.11:8980/js'
 			},{
 				name: 'http://127.0.0.1:8980',
-				value: 'http://127.0.0.1:8980/js',
-			}],
+				value: 'http://127.0.0.1:8980/js'
+			}]
 		};
 	},
 	onLoad() {
@@ -152,6 +152,10 @@ export default {
 	width: 260rpx;
 	height: 260rpx;
 	border-radius: 50%;
+}
+
+.base-url js-select {
+	width: 100%;
 }
 
 .button {

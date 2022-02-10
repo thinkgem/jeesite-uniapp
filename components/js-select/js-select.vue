@@ -14,6 +14,7 @@
 			:value-name="options.itemValue"
 			:default-value="options.currentIndex"
 			@confirm="selectConfirm"
+			style="width: 100%"
 			></u-select>
 	</view>
 </template>
@@ -139,6 +140,9 @@ export default {
 		selectValue() {
 			// 微信小程序，需要延迟下，否则获取不 value 导致无法回显数据
 			this.$nextTick(() => {
+				if (!this.options.value) {
+					return;
+				}
 				for (let i in this.options.items){
 					let item = this.options.items[i];
 					this.options.indexMap[item[this.options.itemValue]] = Number(i);
