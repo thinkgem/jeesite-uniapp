@@ -216,6 +216,9 @@ export default {
 						responseType: 'arraybuffer',
 						complete: res => {
 							// console.log(res)
+							if (!item.file.name) {
+								item.file.name = item.url.split('/').pop();
+							}
 							if (res.statusCode == 200) {
 								uploadFile(res.data);
 							}else{
@@ -233,6 +236,9 @@ export default {
 		// 上传成功一个，就写进 fileUploadIds
 		uploadSuccess(data, index, lists, name){
 			let item = lists[index];
+			if (item.response && item.response.fileUpload) {
+				item.fileUploadId = item.response.fileUpload.id;
+			}
 			this.options.fileUploadIds.push(item.fileUploadId);
 		},
 		// 全部上传后，刷新 fileUploadIds、fileUploadDelIds
