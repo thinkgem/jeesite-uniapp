@@ -164,6 +164,9 @@ export default {
 						formData.fileEntityId = '';
 						formData.fileUploadId = '';
 						formData.fileMd5 = spark.end();
+						if (!item.file.name) {
+							item.file.name = item.url.split('/').pop();
+						}
 						formData.fileName = item.file.name;
 						// console.log('formData' + JSON.stringify(formData));
 						self.$u.post(adminPath + '/file/upload', formData).then(res => {
@@ -210,15 +213,24 @@ export default {
 						}, reject);
 					} );
 					// #endif
-					// #ifndef APP-PLUS
+					// #ifdef MP
+					uni.getFileSystemManager().readFile({
+						filePath: item.url,
+						success(res) {
+							// console.log(res)
+							uploadFile(res.data);
+						},
+						fail(res) {
+							reject(res);
+						}
+					})
+					// #endif
+					// #ifdef H5
 					uni.request({
 						url: item.url,
 						responseType: 'arraybuffer',
 						complete: res => {
 							// console.log(res)
-							if (!item.file.name) {
-								item.file.name = item.url.split('/').pop();
-							}
 							if (res.statusCode == 200) {
 								uploadFile(res.data);
 							}else{
