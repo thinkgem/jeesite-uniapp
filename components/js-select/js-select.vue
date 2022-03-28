@@ -105,6 +105,7 @@ export default {
 	watch: {
 		value(val, oldVal) {
 			this.options.value = val;
+			this.selectValue();
 		},
 		labelValue(val, oldVal) {
 			this.options.label = val;
@@ -138,23 +139,20 @@ export default {
 			this.selectValue();
 		},
 		selectValue() {
-			// 微信小程序，需要延迟下，否则获取不 value 导致无法回显数据
-			this.$nextTick(() => {
-				if (!this.options.value) {
-					return;
-				}
-				for (let i in this.options.items){
-					let item = this.options.items[i];
-					this.options.indexMap[item[this.options.itemValue]] = Number(i);
-					if (item[this.options.itemValue] == this.options.value){
-						// this.options.value = item[this.options.itemValue];
-						this.options.label = item[this.options.itemLabel];
-						if (!this.tree){
-							this.options.currentIndex = [this.options.indexMap[this.options.value]];
-						}
+			if (!this.options.value) {
+				return;
+			}
+			for (let i in this.options.items){
+				let item = this.options.items[i];
+				this.options.indexMap[item[this.options.itemValue]] = Number(i);
+				if (item[this.options.itemValue] == this.options.value){
+					// this.options.value = item[this.options.itemValue];
+					this.options.label = item[this.options.itemLabel];
+					if (!this.tree && this.options.indexMap[this.options.value]){
+						this.options.currentIndex = [this.options.indexMap[this.options.value]];
 					}
 				}
-			});
+			}
 		},
 		convertTree(data) {
 			let i, l, key = "id", parentKey = "pId", childKey = "children";
@@ -189,7 +187,7 @@ export default {
 				let item = items[i];
 				values.push(String(item.value).replace(/^u_/g,''));
 				labels.push(String(item.label));
-				if (!this.tree){
+				if (!this.tree && this.options.indexMap[item.value]){
 					currentIndexes.push(this.options.indexMap[item.value])
 				}
 			}
