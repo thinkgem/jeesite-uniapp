@@ -202,6 +202,7 @@ export default {
 		submit() {
 			this.$refs.uForm.validate(valid => {
 				if (valid) {
+					delete this.model.extend;
 					this.model.avatarBase64 = this.avatarBase64;
 					this.$u.api.user.infoSaveBase(this.model).then(res => {
 						this.$u.api.index(); // 保存后更新用户信息
