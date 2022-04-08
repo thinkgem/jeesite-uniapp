@@ -147,7 +147,8 @@
 		justify-content: center;
 		align-items: center;
 		line-height: 24rpx;
-		padding: 4rpx 8rpx;
+		height: 33rpx;
+		padding: 4rpx 10rpx;
 		border-radius: 100rpx;
 		z-index: 9;
 		
