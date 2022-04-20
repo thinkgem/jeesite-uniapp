@@ -136,6 +136,11 @@ export default {
 				res = this.convertTree(res);
 			}
 			this.options.items = res;
+			if (!this.options.items || this.options.items.length == 0){
+				this.options.items = [{}];
+				this.options.items[0][this.options.itemValue] = '';
+				this.options.items[0][this.options.itemLabel] = '';
+			}
 			this.selectValue();
 		},
 		selectValue() {
