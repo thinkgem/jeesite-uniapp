@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<web-view :webview-styles="webviewStyles" :src="webviewUrl"></web-view>
+		<web-view :update-title="false" :webview-styles="webviewStyles" :src="webviewUrl"></web-view>
 	</view>
 </template>
 <script>

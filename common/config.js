@@ -10,7 +10,7 @@ const config = {
 	companyName: 'ThinkGem',
 	
 	// 产品版本号
-	productVersion: 'V4.3.2',
+	productVersion: 'V4.3.3',
 	
 	// 版本检查标识
 	appCode: 'android',
