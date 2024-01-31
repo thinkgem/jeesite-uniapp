@@ -60,15 +60,12 @@ export default {
 		logout() {
 			this.$u.api.logout().then(res => {
 				this.$u.toast(res.message);
-				if (res.result == 'true') {
-					let self = this;
-					setTimeout(() => {
-						uni.reLaunch({
-							url: '/pages/sys/login/index'
-						});
-					}, 500);
-				}
 			});
+			setTimeout(() => {
+				uni.reLaunch({
+					url: '/pages/sys/login/index'
+				});
+			}, 500);
 		}
 	}
 };
