@@ -25,6 +25,10 @@ class Request {
 		options.params = options.params || {};
 		options.header = Object.assign({}, this.config.header, options.header);
 		options.method = options.method || this.config.method;
+		
+		if (options.options) {
+			options = deepMerge(options, options.options);
+		}
 
 		return new Promise((resolve, reject) => {
 			options.complete = (response) => {
@@ -114,7 +118,7 @@ class Request {
 			loadingTime: 800, // 在此时间内，请求还没回来的话，就显示加载中动画，单位ms
 			timer: null, // 定时器
 			originalData: false, // 是否在拦截器中返回服务端的原始数据，见文档说明
-			loadingMask: true, // 展示loading的时候，是否给一个透明的蒙层，防止触摸穿透
+			loadingMask: true // 展示loading的时候，是否给一个透明的蒙层，防止触摸穿透
 		}
 	
 		// 拦截器
@@ -126,32 +130,35 @@ class Request {
 		}
 
 		// get请求
-		this.get = (url, data = {}, header = {}) => {
+		this.get = (url, data = {}, header = {}, options) => {
 			return this.request({
 				method: 'GET',
 				url,
 				header,
-				data
+				data,
+				options
 			})
 		}
 
 		// post请求
-		this.post = (url, data = {}, header = {}) => {
+		this.post = (url, data = {}, header = {}, options) => {
 			return this.request({
 				url,
 				method: 'POST',
 				header,
-				data
+				data,
+				options
 			})
 		}
 		
 		// put请求，不支持支付宝小程序(HX2.6.15)
-		this.put = (url, data = {}, header = {}) => {
+		this.put = (url, data = {}, header = {}, options) => {
 			return this.request({
 				url,
 				method: 'PUT',
 				header,
-				data
+				data,
+				options
 			})
 		}
 		
