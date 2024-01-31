@@ -6,15 +6,16 @@ const install = (Vue, vm) => {
 	
 	// 参数配置对象
 	const config = vm.vuex_config;
+	const timeout = 3000;
 	
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	vm.$u.api = {
 		
 		// 基础服务：登录登出、身份信息、菜单授权、切换系统、字典数据等
-		lang: (params = {}) => vm.$u.get('/lang/'+params.lang),
-		index: (params = {}) => vm.$u.get(config.adminPath+'/index', params),
-		login: (params = {}) => vm.$u.post(config.adminPath+'/login', params),
-		logout: (params = {}) => vm.$u.get(config.adminPath+'/logout', params),
+		lang: (params = {}) => vm.$u.get('/lang/'+params.lang, {}, {timeout}),
+		index: (params = {}) => vm.$u.get(config.adminPath+'/index', params, {}, {timeout}),
+		login: (params = {}) => vm.$u.post(config.adminPath+'/login', params, {}, {timeout}),
+		logout: (params = {}) => vm.$u.get(config.adminPath+'/logout', params, {}, {timeout}),
 		authInfo: (params = {}) => vm.$u.get(config.adminPath+'/authInfo', params),
 		menuTree: (params = {}) => vm.$u.get(config.adminPath+'/menuTree', params),
 		switchSys: (params = {}) => vm.$u.get(config.adminPath+'/switch/'+params.sysCode),
@@ -57,7 +58,7 @@ const install = (Vue, vm) => {
 			enable: (params = {}) => vm.$u.post(config.adminPath+'/test/testData/enable', params),
 			delete: (params = {}) => vm.$u.post(config.adminPath+'/test/testData/delete', params),
 		},
-		
+
 	};
 	
 }
