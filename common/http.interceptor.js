@@ -11,7 +11,7 @@ const install = (Vue, vm) => {
 	
 	// 请求参数默认配置
 	Vue.prototype.$u.http.setConfig({
-		baseUrl: vm.vuex_config.baseUrl,
+		baseUrl: vm.vuex_baseUrl,
 		originalData: true, 
 		// 默认头部，http2约定header名称统一小写 ThinkGem
 		header: {
@@ -53,7 +53,7 @@ const install = (Vue, vm) => {
 		
 		let data = res.data;
 		if (!(data)){
-			vm.$u.toast('未连接到服务器')
+			vm.$u.toast('连接不到服务器，在登录界面选择服务器地址。', 4000)
 			return false;
 		}
 		
