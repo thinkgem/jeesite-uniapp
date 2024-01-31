@@ -31,6 +31,10 @@
 				<js-select v-model="model.testUser.userCode" :items="userSelectList" placeholder="请选择人员" :tree="true"
 					:label-value="model.testUser.userName" @label-input="model.testUser.userName = $event"></js-select>
 			</u-form-item>
+			<u-form-item label="人员选择" prop="testUser2" label-width="180">
+				<js-select v-model="model.testUser2.userCode" :items="userSelectList" placeholder="请选择人员" :tree="true"
+					:label-value="model.testUser2.userName" @label-input="model.testUser2.userName = $event"></js-select>
+			</u-form-item>
 			<u-form-item label="上传图片（选填）" prop="images" label-position="top">
 				<js-uploadfile v-model="model.dataMap" :biz-key="model.id" biz-type="testData_image"></js-uploadfile>
 			</u-form-item>
@@ -58,6 +62,10 @@ export default {
 				testRadio: '',
 				testCheckbox: '',
 				testUser: {
+					userCode: '',
+					userName: ''
+				},
+				testUser2: {
 					userCode: '',
 					userName: ''
 				},
