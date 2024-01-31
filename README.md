@@ -46,7 +46,7 @@ uView UI，是 uni-app 生态最优秀的 UI 框架，全面的组件和便捷�
 2、微信小程序端：通过**微信**扫码（最佳体验，但不是最新演示，更新延迟）<br><br>
 <img src="https://jeesite.com/assets/images/wx_app.jpg" width="220" height="220" >
 
-3、安卓 Android 安装包，点击下载：[JeeSite4.3.1.apk](https://gitee.com/thinkgem/jeesite4/attach_files/925161/download)
+3、安卓 Android 安装包，点击下载：[JeeSite4.3.5.apk](https://gitee.com/thinkgem/jeesite4/attach_files/1667731/download)
 
 ## 快速运行
 
@@ -64,7 +64,7 @@ uView UI，是 uni-app 生态最优秀的 UI 框架，全面的组件和便捷�
 本项目后台服务默认连接的是 demo.jeesite.com 官网演示环境，你需要替换为你的 JeeSite 后台，步骤如下：
 
 1、安装 JeeSite 最新版：<a href="https://gitee.com/thinkgem/jeesite4#%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C" target="blank">https://gitee.com/thinkgem/jeesite4#本地运行</a>
-  （本项目支持 v4.2.3 或以上版本，若已安装，请执行 `bin/package.bat` 更新依赖）
+  （本项目支持 v4.2.1 或以上版本，若已安装，请执行 `bin/package.bat` 更新依赖）
 
 2、打开 application.yml 修改如下配置（Ajax跨域设置和与后台基础交互的请求头名）：
 
@@ -101,11 +101,17 @@ web:
 
 ## 生态系统
 
-* 分布式微服务系统（Spring Cloud）：<https://gitee.com/thinkgem/jeesite4-cloud>
-* JFlow工作流引擎：<https://gitee.com/thinkgem/jeesite4-jflow> ：<http://ccflow.org>
-* Flowable业务流程模块（BPM）：<http://jeesite.com/docs/bpm/>
-* 内容管理模块（CMS）：<https://gitee.com/thinkgem/jeesite4-cms>
-* 手机端移动端：<https://gitee.com/thinkgem/jeesite4-uniapp>
+* 分布式微服务（Spring Cloud）：<https://gitee.com/thinkgem/jeesite-cloud>
+* Flowable业务流程引擎（BPM）：<http://jeesite.com/docs/bpm/>
+* JFlow工作流引擎：<https://gitee.com/thinkgem/jeesite-jflow>
+* 多站点内容管理模块（CMS）：<https://jeesite.com/docs/cms/>
+* 手机端移动端：<https://gitee.com/thinkgem/jeesite-uniapp>
+* PC客户端程序：<https://gitee.com/thinkgem/jeesite-client>
+* Vue3分离版本：<https://gitee.com/thinkgem/jeesite-vue>
+* JeeSite统一认证：<https://jeesite.com/docs/oauth2-server>
+* MybatisPlus: <https://gitee.com/thinkgem/jeesite-mybatisplus>
+* Magic接口快速开发：<https://gitee.com/thinkgem/jeesite-magic-api>
+* 内外网中间件：<https://my.oschina.net/thinkgem/blog/4624519>
 
 ## 学习路线
 
