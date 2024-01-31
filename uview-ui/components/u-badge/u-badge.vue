@@ -148,6 +148,7 @@
 		align-items: center;
 		line-height: 24rpx;
 		height: 33rpx;
+		min-width: 33rpx;
 		padding: 4rpx 10rpx;
 		border-radius: 100rpx;
 		z-index: 9;
