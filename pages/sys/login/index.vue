@@ -20,7 +20,7 @@
 			</view>
 			<view class="list-call base-url">
 				<u-icon class="u-icon" size="40" name="setting" style="padding-right:15rpx;"></u-icon>
-				<js-select v-model="baseUrl" :items="baseUrlList" placeholder="快速切换服务器地址" @confirm="updateBaseUrl"></js-select>
+				<js-select v-model="baseUrlValue" :items="baseUrlList" placeholder="快速切换服务器地址" @confirm="updateBaseUrl"></js-select>
 			</view>
 		</view>
 		<view class="button" hover-class="button-hover" @click="submit()"><text>{{$t('login.loginButton')}}</text></view>
@@ -40,6 +40,7 @@
  * Copyright (c) 2013-Now http://jeesite.com All rights reserved.
  */
 import base64 from '@/common/base64.js';
+import config from '@/common/config.js';
 export default {
 	data() {
 		return {
@@ -50,17 +51,8 @@ export default {
 			isValidCodeLogin: false,
 			validCode: '',
 			imgValidCodeSrc: null,
-			baseUrl: '',
-			baseUrlList: [{
-				name: 'https://demo.jeesite.com',
-				value: 'https://demo.jeesite.com/js'
-			},{
-				name: 'http://192.168.0.11:8980',
-				value: 'http://192.168.0.11:8980/js'
-			},{
-				name: 'http://127.0.0.1:8980',
-				value: 'http://127.0.0.1:8980/js'
-			}]
+			baseUrlList: config.baseUrlList,
+			baseUrlValue: ''
 		};
 	},
 	onLoad() {
@@ -69,6 +61,12 @@ export default {
 				uni.reLaunch({
 					url: '/pages/sys/home/index'
 				});
+			}
+		});
+		this.baseUrlList.forEach(item => {
+			if (item.baseUrl == this.vuex_baseUrl){
+				this.baseUrlValue = item.value;
+				return;
 			}
 		});
 	},
@@ -121,17 +119,53 @@ export default {
 		},
 		wxLogin(res) {
 			this.$u.toast('微信登录');
+			let that = this;
+			uni.login({
+				provider: 'weixin',
+				success: function(wxRes) {
+					uni.showLoading('正在登录中...');
+					console.error(wxRes);
+					// 获取登录的token
+					uni.setData('weixinToken', wxRes.code);
+					// 获取登录的unionid 这个还是在开放平台做了 公众号 小程序 微信登录app关联才会有
+					uni.setData('unionid', wxRes.authResult.unionid);
+					// 获取openid
+					uni.setData('weixinOpenid', wxRes.authResult.openid);
+					// 这里吧数据全部提交给后台核验，有没有注册 注册了 后台代码会请求接口
+					// String s = HttpClient.doGet("https://api.weixin.qq.com/sns/userinfo?access_token="
+					//  + loginInfo.getToken() + "&openid=" + loginInfo.getOpenid()); 获取头像和昵称
+					that.$u.postJson('/user/loginApp', {
+						token: wxRes.authResult.access_token,
+						unionid: wxRes.authResult.unionid,
+						openid: wxRes.authResult.openid
+					})
+					.then(res => {
+						if (res.status === 0) {
+							// 绑定手机号直接登录
+							that.getUserInfo(res.data.userId, res.data.uuid);
+						} else {
+							// 没有绑定手机号让绑定手机号
+							uni.navigateTo({
+								url: '/pages/public/wxmobile'
+							});
+						}
+					});
+				}
+			});
 		},
 		qqLogin() {
 			this.$u.toast('QQ 登录');
 		},
 		updateBaseUrl() {
-			this.vuex_config.baseUrl = this.baseUrl;
-			this.$u.vuex('vuex_config', this.vuex_config);
-			this.$u.http.setConfig({
-				baseUrl: this.baseUrl
+			this.baseUrlList.forEach(item => {
+				if (item.value == this.baseUrlValue){
+					this.vuex_config.baseUrl = item.baseUrl;
+					this.$u.vuex('vuex_baseUrl', this.vuex_config.baseUrl);
+					this.$u.http.setConfig({ baseUrl: this.vuex_config.baseUrl });
+					this.$u.toast('切换成功！');
+					return;
+				}
 			});
-			this.$u.toast('切换成功！');
 		}
 	}
 };
