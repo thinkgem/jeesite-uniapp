@@ -6,8 +6,8 @@
     "name" : "JeeSite",
     "appid" : "__UNI__841DCAE",
     "description" : "JeeSite快速开发平台",
-    "versionName" : "4.3.3",
-    "versionCode" : "100",
+    "versionName" : "4.3.5",
+    "versionCode" : 101,
     "transformPx" : false,
     "app-plus" : {
         // APP-VUE分包，可提APP升启动速度，2.7.12开始支持，兼容微信小程序分包方案，默认关闭
@@ -56,7 +56,9 @@
                 ],
                 "abiFilters" : [ "armeabi-v7a", "arm64-v8a" ]
             },
-            "ios" : {},
+            "ios" : {
+                "dSYMs" : false
+            },
             "sdkConfigs" : {
                 "ad" : {},
                 "oauth" : {}
@@ -102,7 +104,7 @@
     "mp-weixin" : {
         "appid" : "wx335f34af8ccb4131",
         "setting" : {
-            "urlCheck" : true,
+            "urlCheck" : false,
             "es6" : false,
             "minified" : true,
             "postcss" : true
@@ -143,5 +145,8 @@
         },
         "title" : "JeeSite",
         "domain" : "/app"
-    }
+    },
+    "vueVersion" : "2",
+    "locale" : "zh-Hans",
+    "fallbackLocale" : "zh-Hans"
 }

@@ -112,7 +112,7 @@
 				"navigationBarTitleText": "增删改查"
 			}
 		},
-		
+
 		/* Common */
 		{
 			"path": "pages/common/webview",
