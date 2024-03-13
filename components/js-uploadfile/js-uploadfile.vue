@@ -102,10 +102,12 @@ export default {
 		}
 	},
 	created() {
-		this.refreshStatus();
-		this.options.action = this.vuex_config.baseUrl + this.vuex_config.adminPath + '/file/upload';
-		this.options.formData = Object.assign(this.options.formData, this.formData);
-		this.loadData();
+		this.$nextTick(() => {
+			this.refreshStatus();
+			this.options.action = this.vuex_config.baseUrl + this.vuex_config.adminPath + '/file/upload';
+			this.options.formData = Object.assign(this.options.formData, this.formData);
+			this.loadData();
+		});
 	},
 	methods: {
 		// 刷新是否只读状态

@@ -90,17 +90,15 @@ export default {
 	onLoad(params){
 		this.$u.api.testData.form(params).then(res => {
 			Object.assign(this.model, res.testData);
-		});
-	},
-	onReady() {
-		this.$refs.uForm.setRules(this.rules);
-		// 机构数据
-		this.$u.api.office.treeData().then(res => {
-			this.officeSelectList = res;
-		});
-		// 人员和机构数据
-		this.$u.api.office.treeData({isLoadUser: true}).then(res => {
-			this.userSelectList = res;
+			this.$refs.uForm.setRules(this.rules);
+			// 机构数据
+			this.$u.api.office.treeData().then(res => {
+				this.officeSelectList = res;
+			});
+			// 人员和机构数据
+			this.$u.api.office.treeData({isLoadUser: true}).then(res => {
+				this.userSelectList = res;
+			});
 		});
 	},
 	methods: {

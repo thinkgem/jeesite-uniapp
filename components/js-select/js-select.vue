@@ -115,7 +115,9 @@ export default {
 		}
 	},
 	created() {
-		this.loadData();
+		this.$nextTick(() => {
+			this.loadData();
+		});
 	},
 	methods: {
 		loadData() {
