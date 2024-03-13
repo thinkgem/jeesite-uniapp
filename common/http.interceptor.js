@@ -57,6 +57,11 @@ const install = (Vue, vm) => {
 			return false;
 		}
 		
+		let token = res.header['x-token'];
+		if (token) {
+			vm.$u.vuex('vuex_token', token);
+		}
+		
 		if (typeof data === 'object'){
 			if (data.sessionid){
 				vm.$u.vuex('vuex_token', data.sessionid);
