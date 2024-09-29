@@ -91,7 +91,7 @@ export default {
 	},
 	watch: {
 		value(val, oldVal) {
-			this.options.value = Object.assign(this.options.value, val);
+			this.options.value = Object.assign({}, this.options.value, val);
 		},
 		maxCount(val, oldVal) {
 			this.refreshStatus();
@@ -104,7 +104,7 @@ export default {
 	created() {
 		this.$nextTick(() => {
 			this.refreshStatus();
-			this.options.action = this.vuex_config.baseUrl + this.vuex_config.adminPath + '/file/upload';
+			this.options.action = this.vuex_baseUrl + this.vuex_config.adminPath + '/file/upload';
 			this.options.formData = Object.assign(this.options.formData, this.formData);
 			this.loadData();
 		});
@@ -119,7 +119,7 @@ export default {
 		// 已上传的文件回显到上传组件
 		loadData(){
 			if (this.options.formData.bizKey != ''){
-				let baseUrl = this.vuex_config.baseUrl;
+				let baseUrl = this.vuex_baseUrl;
 				let adminPath = this.vuex_config.adminPath;
 				this.$u.post(adminPath + '/file/fileList', {
 					bizKey: this.options.formData.bizKey,
@@ -149,7 +149,7 @@ export default {
 			let item = lists[index];
 			let upload = this.upload;
 			let formData = this.options.formData;
-			let baseUrl = this.vuex_config.baseUrl;
+			let baseUrl = this.vuex_baseUrl;
 			let adminPath = this.vuex_config.adminPath;
 			self.$u.http.interceptor.request(this.options);
 			return new Promise((resolve, reject) => {
@@ -299,17 +299,12 @@ export default {
 			// console.log('fileUploadDelIds', this.options.fileUploadDelIds)
 			// 将上传和删除的 id 回传给 model
 			let formData = this.options.formData;
-			let fileParams = this.options.value || {};
-			fileParams[formData.bizType] = this.options.fileUploadIds.join(',');
-			fileParams[formData.bizType+'__del'] = this.options.fileUploadDelIds.join(',');
-			this.options.value = fileParams;
-			// console.log('uploadfile-input bizKey: ' + this.bizKey + ', bizType: ' + this.bizType
-			// 	+ ', input: ' + JSON.stringify(Object.assign(this.options.value, this.value)))
-			this.$emit('input', Object.assign(this.options.value, this.value));
+			this.options.value[formData.bizType] = this.options.fileUploadIds.join(',');
+			this.options.value[formData.bizType+'__del'] = this.options.fileUploadDelIds.join(',');
+			// console.log('fileupload-input bizKey: ' + this.bizKey + ', bizType: ' + this.bizType
+			// 	+ ', input: ' + JSON.stringify(this.options.value))
+			this.$emit('input', this.options.value);
 		},
 	}
 }
 </script>
-<style lang="scss" scoped>
-	
-</style>

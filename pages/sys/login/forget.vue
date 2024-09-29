@@ -53,11 +53,11 @@ export default {
 		refreshImgValidCode(e) {
 			if (this.vuex_token == '') {
 				this.$u.api.index().then(res => {
-					this.imgValidCodeSrc = this.vuex_config.baseUrl + '/validCode?__sid='
+					this.imgValidCodeSrc = this.vuex_baseUrl + '/validCode?__sid='
 						+ res.sessionid + '&t=' + new Date().getTime();
 				});
 			} else {
-				this.imgValidCodeSrc = this.vuex_config.baseUrl + '/validCode?__sid='
+				this.imgValidCodeSrc = this.vuex_baseUrl + '/validCode?__sid='
 						+ this.vuex_token + '&t=' + new Date().getTime();
 			}
 			this.validCode = '';

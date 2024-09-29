@@ -44,8 +44,8 @@ import config from '@/common/config.js';
 export default {
 	data() {
 		return {
-			username: 'user1',
-			password: 'admin',
+			username: '',
+			password: '',
 			showPassword: false,
 			remember: true,
 			isValidCodeLogin: false,
@@ -62,6 +62,8 @@ export default {
 					url: '/pages/sys/home/index'
 				});
 			}
+			this.username = res.demoMode == true ? 'user1' : 'system';
+			this.password = 'admin';
 		});
 		this.baseUrlList.forEach(item => {
 			if (item.baseUrl == this.vuex_baseUrl){
@@ -77,11 +79,11 @@ export default {
 		refreshImgValidCode(e) {
 			if (this.vuex_token == '') {
 				this.$u.api.index().then(res => {
-					this.imgValidCodeSrc = this.vuex_config.baseUrl + '/validCode?__sid='
+					this.imgValidCodeSrc = this.vuex_baseUrl + '/validCode?__sid='
 						+ res.sessionid + '&t=' + new Date().getTime();
 				});
 			} else {
-				this.imgValidCodeSrc = this.vuex_config.baseUrl + '/validCode?__sid='
+				this.imgValidCodeSrc = this.vuex_baseUrl + '/validCode?__sid='
 						+ this.vuex_token + '&t=' + new Date().getTime();
 			}
 			this.validCode = '';
@@ -159,9 +161,8 @@ export default {
 		updateBaseUrl() {
 			this.baseUrlList.forEach(item => {
 				if (item.value == this.baseUrlValue){
-					this.vuex_config.baseUrl = item.baseUrl;
-					this.$u.vuex('vuex_baseUrl', this.vuex_config.baseUrl);
-					this.$u.http.setConfig({ baseUrl: this.vuex_config.baseUrl });
+					this.$u.vuex('vuex_baseUrl', item.baseUrl);
+					this.$u.http.setConfig({ baseUrl: item.baseUrl });
 					this.$u.toast('切换成功！');
 					return;
 				}

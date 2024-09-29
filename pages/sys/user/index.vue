@@ -74,7 +74,7 @@ export default {
 	computed: {
 		avatarUrl() {
 			let url = this.vuex_user.avatarUrl || '/ctxPath/static/images/user1.jpg';
-			url = url.replace('/ctxPath/', this.vuex_config.baseUrl + '/');
+			url = url.replace('/ctxPath/', this.vuex_baseUrl + '/');
 			return url + '?t=' + new Date().getTime();
 		}
 	},

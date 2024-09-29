@@ -181,7 +181,7 @@ export default {
 				return this.avatarBase64;
 			}
 			let url = this.vuex_user.avatarUrl || '/ctxPath/static/images/user1.jpg';
-			url = url.replace('/ctxPath/', this.vuex_config.baseUrl + '/');
+			url = url.replace('/ctxPath/', this.vuex_baseUrl + '/');
 			return url;
 		}
 	},
