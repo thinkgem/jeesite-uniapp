@@ -101,18 +101,24 @@
 		
 		/* 增删改查例子 */
 		{
+			"path": "pages/testData/index",
+			"style": {
+				"navigationBarTitleText": "增删改查"
+			}
+		},
+		{
 			"path": "pages/testData/form",
 			"style": {
 				"navigationBarTitleText": "新增编辑"
 			}
 		},
 		{
-			"path": "pages/testData/index",
+			"path": "pages/testData/formUpload",
 			"style": {
-				"navigationBarTitleText": "增删改查"
+				"navigationBarTitleText": "新增编辑"
 			}
 		},
-
+		
 		/* Common */
 		{
 			"path": "pages/common/webview",

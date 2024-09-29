@@ -35,11 +35,8 @@
 				<js-select v-model="model.testUser2.userCode" :items="userSelectList" placeholder="请选择人员" :tree="true"
 					:label-value="model.testUser2.userName" @label-input="model.testUser2.userName = $event"></js-select>
 			</u-form-item>
-			<u-form-item label="上传图片（1）" prop="images" label-position="top">
+			<u-form-item label="上传图片（可选）" prop="images" label-position="top">
 				<js-uploadfile v-model="model.dataMap" :biz-key="model.id" biz-type="testData_image"></js-uploadfile>
-			</u-form-item>
-			<u-form-item label="上传图片（2）" prop="files" label-position="top">
-				<js-uploadfile v-model="model.dataMap" :biz-key="model.id" biz-type="testData_file"></js-uploadfile>
 			</u-form-item>
 		</u-form>
 		<view class="form-footer">

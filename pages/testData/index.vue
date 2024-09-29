@@ -37,6 +37,7 @@ export default {
 			count: 0,
 			loadStatus: 'loadmore',
 			options: [
+				{text: '上传', style: { background: '#414ee0'}},
 				{text: '删除', style: { background: '#dd524d'}}
 			]
 		};
@@ -72,15 +73,16 @@ export default {
 			});
 		},
 		optionsClick(rowIndex, btnIndex) {
+			let self = this, row = self.list[rowIndex];
 			if(btnIndex == 0) {
-				let self = this;
+				this.navTo('formUpload?id='+row.id);
+			} else if(btnIndex == 1) {
 				uni.showModal({
 					title: '提示',
 					content: '确认要删除该数据吗？',
 					showCancel: true,
 					success: function (res2) {
 						if (res2.confirm) {
-							let row = self.list[rowIndex];
 							self.$u.api.testData.delete({id: row.id}).then(res => {
 								self.$u.toast(res.message);
 								if (res.result == 'true'){
