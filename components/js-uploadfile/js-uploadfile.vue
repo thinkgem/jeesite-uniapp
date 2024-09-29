@@ -155,6 +155,7 @@ export default {
 			return new Promise((resolve, reject) => {
 				try{
 					function uploadFile(arrayBuffer){
+						// #ifndef APP-PLUS
 						let buffer = arrayBuffer;
 						let size = 10 * 1024 * 1024;
 						let spark = new SparkMD5.ArrayBuffer();
@@ -163,14 +164,18 @@ export default {
 						}else{
 							spark.append(buffer);
 						}
+						formData.fileMd5 = spark.end();
+						// #endif
+						// #ifdef APP-PLUS
+						formData.fileMd5 = 'atime' + new Date().getTime();
+						// #endif
 						formData.fileEntityId = '';
 						formData.fileUploadId = '';
-						formData.fileMd5 = spark.end();
 						if (!item.file.name) {
 							item.file.name = item.url.split('/').pop();
 						}
 						formData.fileName = item.file.name;
-						// console.log('formData' + JSON.stringify(formData));
+						// console.log('fileupload-upload: ' + JSON.stringify(formData));
 						self.$u.post(adminPath + '/file/upload', formData).then(res => {
 							// console.log(res)
 							// 文件已经上传，启用秒传
@@ -198,22 +203,32 @@ export default {
 						})
 					}
 					// #ifdef APP-PLUS
-					plus.io.requestFileSystem(plus.io.PRIVATE_WWW, function(fs){
-						fs.root.getFile(item.url, {create: false}, function(fileEntry){
-							fileEntry.file(function(file){
-								// console.log("getFile:" + JSON.stringify(file))
-								item.file.name = file.name;
-								var fileReader = new plus.io.FileReader();
-								fileReader.readAsText(file, 'utf-8');
-								fileReader.onloadend = function(evt) {
-									uploadFile(evt.target.result);
-								}
-								fileReader.onerror = function(error) {
-									reject(error);
-								}
-							}, reject);
-						}, reject);
-					} );
+					// plus.io.requestFileSystem(plus.io.PRIVATE_WWW, function(fs){
+					// 	console.log("getFile url: " + item.url)
+					// 	let tmpUrl = item.url; 
+					// 	if (tmpUrl.indexOf('/Library/Developer/CoreSimulator/Devices') != -1) {
+					// 		tmpUrl = '..' + tmpUrl.substring(tmpUrl.indexOf('/doc/uniapp'));
+					// 	}
+					// 	console.log("getFile tmpUrl: " + tmpUrl)
+					// 	fs.root.getFile(tmpUrl, {create: false}, function(fileEntry){
+					// 		fileEntry.file(function(file){
+					// 			item.file.name = file.name;
+					// 			var fileReader = new plus.io.FileReader();
+					// 			fileReader.onload = function(evt) {
+					// 				uploadFile(evt.target.result);
+					// 			}
+					// 			fileReader.onerror = function(error) {
+					// 				console.log("fileReader onerror: " + JSON.stringify(error))
+					// 				reject(error);
+					// 			}
+					// 			fileReader.readAsText(file, 'utf-8');
+					// 		}, reject);
+					// 	}, function(error) {
+					// 		console.log("getFile err: " + JSON.stringify(error))
+					// 		reject(error)
+					// 	});
+					// });
+					uploadFile();
 					// #endif
 					// #ifdef MP
 					uni.getFileSystemManager().readFile({
@@ -288,6 +303,8 @@ export default {
 			fileParams[formData.bizType] = this.options.fileUploadIds.join(',');
 			fileParams[formData.bizType+'__del'] = this.options.fileUploadDelIds.join(',');
 			this.options.value = fileParams;
+			// console.log('uploadfile-input bizKey: ' + this.bizKey + ', bizType: ' + this.bizType
+			// 	+ ', input: ' + JSON.stringify(Object.assign(this.options.value, this.value)))
 			this.$emit('input', Object.assign(this.options.value, this.value));
 		},
 	}
