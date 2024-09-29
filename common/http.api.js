@@ -58,7 +58,7 @@ const install = (Vue, vm) => {
 			enable: (params = {}) => vm.$u.post(config.adminPath+'/test/testData/enable', params),
 			delete: (params = {}) => vm.$u.post(config.adminPath+'/test/testData/delete', params),
 		},
-
+		
 	};
 	
 }
