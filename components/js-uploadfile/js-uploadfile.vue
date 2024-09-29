@@ -91,7 +91,7 @@ export default {
 	},
 	watch: {
 		value(val, oldVal) {
-			this.options.value = val;
+			this.options.value = Object.assign(this.options.value, val);
 		},
 		maxCount(val, oldVal) {
 			this.refreshStatus();
