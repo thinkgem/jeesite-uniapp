@@ -57,13 +57,11 @@ export default {
 	},
 	onLoad() {
 		this.$u.api.index({loginCheck: true}).then(res => {
-			if (typeof res === 'object' && res.result !== 'login'){
+			if (typeof res === 'object' && res.result && res.result !== 'login'){
 				uni.reLaunch({
 					url: '/pages/sys/home/index'
 				});
 			}
-			this.username = res.demoMode == true ? 'user1' : 'system';
-			this.password = 'admin';
 		});
 		this.baseUrlList.forEach(item => {
 			if (item.baseUrl == this.vuex_baseUrl){
@@ -71,8 +69,19 @@ export default {
 				return;
 			}
 		});
+		this.initAccount();
 	},
 	methods: {
+		initAccount() {
+			if (this.vuex_baseUrl.indexOf('jeesite.com') != -1){
+				this.username = 'user1';
+			} else if (this.username == 'user1') {
+				this.username = 'system';
+			}
+			if (this.password == '') {
+				this.password = 'admin';
+			}
+		},
 		showPass() {
 			this.showPassword = !this.showPassword;
 		},
@@ -164,6 +173,7 @@ export default {
 					this.$u.vuex('vuex_baseUrl', item.baseUrl);
 					this.$u.http.setConfig({ baseUrl: item.baseUrl });
 					this.$u.toast('切换成功！');
+					this.initAccount();
 					return;
 				}
 			});

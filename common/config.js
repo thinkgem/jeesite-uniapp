@@ -10,7 +10,7 @@ const config = {
 	companyName: 'ThinkGem',
 
 	// 产品版本号
-	productVersion: 'V4.3.6',
+	productVersion: 'V4.3.7',
 
 	// 版本检查标识
 	appCode: 'android',
@@ -29,17 +29,24 @@ config.baseUrlList = [
 		baseUrl: 'https://vue.jeesite.com/js',
 		value: '0'
 	}, {
-		name: 'http://192.168.0.13:8980',
-		baseUrl: 'http://192.168.0.13:8980/js',
+		name: 'https://127.0.0.1:8980',
+		baseUrl: 'https://127.0.0.1:8980/js',
 		value: '1'
-	}, {
-		name: 'http://127.0.0.1:8980',
-		baseUrl: 'http://127.0.0.1:8980/js',
-		value: '2'
 	}
 ];
 
 // 设置后台接口服务的基础地址
+if (window && window.location && window.location.origin) {
+	let idx = config.baseUrlList.length;
+	let url = window.location.origin;
+	if (url.indexOf('jeesite.com') == -1) {
+		config.baseUrlList.push({
+			name: url,
+			baseUrl: url + '/',
+			value: String(idx)
+		});
+	}
+}
 config.baseUrl = config.baseUrlList[0].baseUrl;
 
 // 建议：打开下面注释，方便根据环境，自动设定服务地址
