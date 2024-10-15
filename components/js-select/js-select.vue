@@ -161,11 +161,12 @@ export default {
 				}
 			}
 		},
-		convertTree(data) {
+		convertTree(res) {
 			let i, l, key = "id", parentKey = "pId", childKey = "children";
-			if (Object.prototype.toString.apply(data) === "[object Array]") {
-				let treeData = [], map = [];
-				for (i=0, l=data.length; i<l; i++) {
+			if (Object.prototype.toString.apply(res) === "[object Array]") {
+				let treeData = [], data = [], map = {};
+				for (i=0, l=res.length; i<l; i++) {
+					data[i] = Object.assign({}, res[i]);
 					map[data[i][key]] = data[i];
 				}
 				for (i=0, l=data.length; i<l; i++) {
