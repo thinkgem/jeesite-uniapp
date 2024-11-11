@@ -70,7 +70,7 @@ export default {
 							menuName: '列表',
 							menuIcon: 'thumb-up',
 							menuColor: '',
-							url: '/pages/testData/index',
+							url: '/pages/testData/list',
 						},
 						{
 							menuCode: 'a11',
@@ -84,7 +84,7 @@ export default {
 							menuName: '请假',
 							menuIcon: 'calendar',
 							menuColor: '',
-							url: '/pages/oa/oaLeave/index',
+							url: '/pages/oa/oaLeave/list',
 						},
 					]
 				},
@@ -114,7 +114,7 @@ export default {
 							menuName: '查询',
 							menuIcon: 'search',
 							menuColor: '#919328',
-							url: '/pages/testData/index',
+							url: '/pages/testData/list',
 						}
 					]
 				},
@@ -178,7 +178,7 @@ export default {
 							menuName: '列表演示',
 							menuIcon: '',
 							menuColor: '#0d9311',
-							url: '/pages/testData/index',
+							url: '/pages/testData/list',
 						},
 						{
 							menuCode: 'a29',
@@ -206,7 +206,10 @@ export default {
 			});
 		},
 		refreshCount() {
-			this.todoCount = 3;
+			// 获取待办个数
+			this.$u.api.bpm.myTaskList({status:1,pageSize:1}).then(res => {
+				this.todoCount = res.count || 0;
+			});
 		},
 		imgListClick(index) {
 			console.log(`点击了第${index + 1}页图片`)

@@ -41,6 +41,7 @@ const store = new Vuex.Store({
 		vuex_remember: lifeData.vuex_remember ? lifeData.vuex_remember : '',
 		vuex_locale: lifeData.vuex_locale ? lifeData.vuex_locale : '',
 		vuex_baseUrl: lifeData.vuex_baseUrl ? lifeData.vuex_baseUrl : config.baseUrl,
+		vuex_wxSessionKey: lifeData.vuex_wxSessionKey ? lifeData.vuex_wxSessionKey : '',
 		
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_config: config,

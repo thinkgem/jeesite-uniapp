@@ -75,7 +75,7 @@ export default {
 		initAccount() {
 			if (this.vuex_baseUrl.indexOf('jeesite.com') != -1){
 				this.username = 'user1';
-			} else if (this.username == 'user1') {
+			} else {
 				this.username = 'system';
 			}
 			if (this.password == '') {
@@ -130,35 +130,40 @@ export default {
 		},
 		wxLogin(res) {
 			this.$u.toast('微信登录');
-			let that = this;
+			let self = this;
 			uni.login({
 				provider: 'weixin',
 				success: function(wxRes) {
-					uni.showLoading('正在登录中...');
-					console.error(wxRes);
-					// 获取登录的token
-					uni.setData('weixinToken', wxRes.code);
-					// 获取登录的unionid 这个还是在开放平台做了 公众号 小程序 微信登录app关联才会有
-					uni.setData('unionid', wxRes.authResult.unionid);
-					// 获取openid
-					uni.setData('weixinOpenid', wxRes.authResult.openid);
-					// 这里吧数据全部提交给后台核验，有没有注册 注册了 后台代码会请求接口
-					// String s = HttpClient.doGet("https://api.weixin.qq.com/sns/userinfo?access_token="
-					//  + loginInfo.getToken() + "&openid=" + loginInfo.getOpenid()); 获取头像和昵称
-					that.$u.postJson('/user/loginApp', {
-						token: wxRes.authResult.access_token,
-						unionid: wxRes.authResult.unionid,
-						openid: wxRes.authResult.openid
+					self.$u.get('/wx/ma/user/default/login', {
+						code: wxRes.code
 					})
 					.then(res => {
-						if (res.status === 0) {
-							// 绑定手机号直接登录
-							that.getUserInfo(res.data.userId, res.data.uuid);
-						} else {
-							// 没有绑定手机号让绑定手机号
-							uni.navigateTo({
-								url: '/pages/public/wxmobile'
+						if (res.sessionKey) {
+							self.$u.vuex('vuex_wxSessionKey', res.sessionKey);
+						}
+						if (res.result === 'true') {
+							self.$u.toast(res.message);
+							setTimeout(() => {
+								uni.reLaunch({
+									url: '/pages/sys/home/index'
+								});
+							}, 500);
+						} else if (res.result === 'bind'){
+							uni.showModal({
+								title: '提示',
+								content: res.message,
+								showCancel: true,
+								success: function (res) {
+									if(!res.confirm) {
+										return;
+									}
+									uni.reLaunch({
+										url: '/pages/sys/login/wx'
+									});
+								}
 							});
+						} else {
+							self.$u.toast(res.message);
 						}
 					});
 				}

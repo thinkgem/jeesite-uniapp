@@ -23,6 +23,12 @@
 				"navigationBarTitleText": "注册账号"
 			}
 		},
+		{
+			"path": "pages/sys/login/wx",
+			"style": {
+				"navigationBarTitleText": "微信登录"
+			}
+		},
 		
 		/* 主页 */
 		{
@@ -101,15 +107,15 @@
 		
 		/* 增删改查例子 */
 		{
-			"path": "pages/testData/index",
-			"style": {
-				"navigationBarTitleText": "增删改查"
-			}
-		},
-		{
 			"path": "pages/testData/form",
 			"style": {
 				"navigationBarTitleText": "新增编辑"
+			}
+		},
+		{
+			"path": "pages/testData/list",
+			"style": {
+				"navigationBarTitleText": "增删改查"
 			}
 		},
 		{
