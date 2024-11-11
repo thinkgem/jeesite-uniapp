@@ -1,6 +1,6 @@
 {
 	"name": "JeeSite4",
-	"version": "4.3.7",
+	"version": "4.3.8",
 	"description": "JeeSite4 移动端快速开发框架",
 	"main": "main.js",
 	"scripts": {

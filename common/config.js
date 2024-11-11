@@ -10,7 +10,7 @@ const config = {
 	companyName: 'ThinkGem',
 
 	// 产品版本号
-	productVersion: 'V4.3.7',
+	productVersion: 'V4.3.8',
 
 	// 版本检查标识
 	appCode: 'android',
@@ -25,12 +25,12 @@ const config = {
 
 config.baseUrlList = [
 	{
-		name: 'https://vue.jeesite.com',
-		baseUrl: 'https://vue.jeesite.com/js',
+		name: 'https://demo.jeesite.com',
+		baseUrl: 'https://demo.jeesite.com/js',
 		value: '0'
 	}, {
-		name: 'https://127.0.0.1:8980',
-		baseUrl: 'https://127.0.0.1:8980/js',
+		name: 'http://127.0.0.1:8980',
+		baseUrl: 'http://127.0.0.1:8980/js',
 		value: '1'
 	}
 ];
