@@ -23,6 +23,11 @@
 				<js-select v-model="baseUrlValue" :items="baseUrlList" placeholder="快速切换服务器地址" @confirm="updateBaseUrl"></js-select>
 			</view>
 		</view>
+		<view class="agreement">
+			<u-checkbox v-model="terms">我已阅读并同意</u-checkbox>
+			<navigator url="/pages/sys/login/terms"
+				open-type="navigate">《软件隐私保护》</navigator>
+		</view>
 		<view class="button" hover-class="button-hover" @click="submit()"><text>{{$t('login.loginButton')}}</text></view>
 		<view class="footer">
 			<navigator url="forget" open-type="navigate">{{$t('login.forget')}}</navigator>
@@ -51,6 +56,7 @@ export default {
 			isValidCodeLogin: false,
 			validCode: '',
 			imgValidCodeSrc: null,
+			terms: false,
 			baseUrlList: config.baseUrlList,
 			baseUrlValue: ''
 		};
@@ -105,6 +111,10 @@ export default {
 			if (this.password.length == 0) {
 				this.$u.toast('请输入密码');
 				return;
+			}
+			if (this.terms != true){
+				this.$u.toast('请阅读《软件隐私保护》');
+				return false;
 			}
 			this.$u.api.login({
 				username: base64.btoa(this.username),
@@ -190,8 +200,8 @@ export default {
 @import 'index.scss';
 
 .logo {
-	width: 260rpx;
-	height: 260rpx;
+	width: 230rpx;
+	height: 230rpx;
 	background: rgba(59, 121, 235, 1);
 	box-shadow: 0rpx 5rpx 20rpx 5rpx rgba(45, 127, 235, 0.5);
 	border-radius: 50%;
@@ -199,8 +209,8 @@ export default {
 }
 
 .logo image {
-	width: 260rpx;
-	height: 260rpx;
+	width: 230rpx;
+	height: 230rpx;
 	border-radius: 50%;
 }
 
@@ -210,6 +220,14 @@ export default {
 
 .button {
 	margin: 30rpx auto 0;
+}
+
+.agreement {
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content: center;
+	color:#666;
 }
 
 .footer {

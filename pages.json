@@ -24,6 +24,12 @@
 			}
 		},
 		{
+			"path": "pages/sys/login/terms",
+			"style": {
+				"navigationBarTitleText": "服务条款"
+			}
+		},
+		{
 			"path": "pages/sys/login/wx",
 			"style": {
 				"navigationBarTitleText": "微信登录"

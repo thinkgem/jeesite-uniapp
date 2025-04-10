@@ -31,14 +31,14 @@
 			<u-form-item label="上传图片（8）" prop="testData_image8" label-position="top">
 				<js-uploadfile @input="updateDataMap" :biz-key="model.id" biz-type="testData_image8"></js-uploadfile>
 			</u-form-item>
-			<view>==image1: {{dataMap['testData_image1']}}</view>
+			<!-- <view>==image1: {{dataMap['testData_image1']}}</view>
 			<view>==image2: {{dataMap['testData_image2']}}</view>
 			<view>==image3: {{dataMap['testData_image3']}}</view>
 			<view>==image4: {{dataMap['testData_image4']}}</view>
 			<view>==image5: {{dataMap['testData_image5']}}</view>
 			<view>==image6: {{dataMap['testData_image6']}}</view>
 			<view>==image7: {{dataMap['testData_image7']}}</view>
-			<view>==image8: {{dataMap['testData_image8']}}</view>
+			<view>==image8: {{dataMap['testData_image8']}}</view> -->
 		</u-form>
 		<view class="form-footer">
 			<u-button class="btn" type="primary" @click="submit">提交</u-button>

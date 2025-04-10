@@ -17,6 +17,11 @@
 						v-model="model.contact" type="text" maxlength="200"></u-input>
 			</u-form-item>
 		</u-form>
+		<view class="agreement">
+			<u-checkbox v-model="terms">我已阅读并同意</u-checkbox>
+			<navigator url="/pages/sys/login/terms"
+				open-type="navigate">《软件隐私保护》</navigator>
+		</view>
 		<view class="form-footer">
 			<u-button class="btn" type="primary" @click="submit">提交</u-button>
 			<!-- <u-button class="btn" type="default" @click="cancel">关闭</u-button> -->
@@ -37,6 +42,7 @@ export default {
 				contact: '',
 				deviceInfo: ''
 			},
+			terms: false,
 			rules: {
 				category: [
 					{
@@ -67,6 +73,10 @@ export default {
 	},
 	methods: {
 		submit() {
+			if (this.terms != true){
+				this.$u.toast('请阅读《软件隐私保护》');
+				return false;
+			}
 			// console.log(this.model)
 			this.$refs.uForm.validate(valid => {
 				if (valid) {
@@ -94,5 +104,11 @@ export default {
 };
 </script>
 <style lang="scss">
-
+.agreement {
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	margin-left:30rpx;
+	color:#666;
+}
 </style>

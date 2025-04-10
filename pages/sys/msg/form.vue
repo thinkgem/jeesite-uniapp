@@ -18,7 +18,6 @@ export default {
 	data() {
 		return {
 			banner: {
-				cover: '/static/jeesite/banner/2.svg',
 				title: '最好用的快速开发平台',
 				author_name: '系统管理员',
 				published_at: '2021-4-20 12:30'
@@ -70,7 +69,7 @@ page {
 	line-height: 50rpx;
 	margin-bottom: 30rpx;
 	text-indent: 60rpx;
-	/deep/ p {
+	p {
 		margin-bottom: 20rpx;
 	}
 }

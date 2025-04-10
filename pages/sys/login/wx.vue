@@ -13,6 +13,11 @@
 				<image class="u-icon-right" :src="'/static/jeesite/login/eye_' + (showPassword ? 'open' : 'close') + '.png'" @click="showPass()"></image>
 			</view>
 		</view>
+		<view class="agreement">
+			<u-checkbox v-model="terms">我已阅读并同意</u-checkbox>
+			<navigator url="/pages/sys/login/terms"
+				open-type="navigate">《软件隐私保护》</navigator>
+		</view>
 		<view class="button" hover-class="button-hover" @click="submit()"><text>绑定微信</text></view>
 	</view>
 </template>
@@ -27,7 +32,8 @@ export default {
 		return {
 			username: '',
 			password: '',
-			showPassword: false
+			showPassword: false,
+			terms: false,
 		};
 	},
 	onLoad() {
@@ -65,6 +71,10 @@ export default {
 				this.$u.toast('请输入密码');
 				return;
 			}
+			if (this.terms != true){
+				this.$u.toast('请阅读《软件隐私保护》');
+				return false;
+			}
 			let self = this;
 			self.$u.get('/wx/ma/user/default/bind', {
 				username: this.username,
@@ -94,8 +104,8 @@ export default {
 @import 'index.scss';
 
 .logo {
-	width: 260rpx;
-	height: 260rpx;
+	width: 230rpx;
+	height: 230rpx;
 	background: rgba(59, 121, 235, 1);
 	box-shadow: 0rpx 5rpx 20rpx 5rpx rgba(45, 127, 235, 0.5);
 	border-radius: 50%;
@@ -103,8 +113,8 @@ export default {
 }
 
 .logo image {
-	width: 260rpx;
-	height: 260rpx;
+	width: 230rpx;
+	height: 230rpx;
 	border-radius: 50%;
 }
 
@@ -114,6 +124,14 @@ export default {
 
 .button {
 	margin: 30rpx auto 0;
+}
+
+.agreement {
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content: center;
+	color:#666;
 }
 
 .footer {

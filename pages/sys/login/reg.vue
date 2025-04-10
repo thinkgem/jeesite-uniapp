@@ -37,8 +37,8 @@
 		</view>
 		<view class="agreement">
 			<u-checkbox v-model="terms">我已阅读并同意</u-checkbox>
-			<navigator url="/pages/common/webview?title=软件用户协议&url=https://jeesite.com/docs/support/"
-				open-type="navigate">《软件用户协议》</navigator>
+			<navigator url="/pages/sys/login/terms"
+				open-type="navigate">《软件隐私保护》</navigator>
 		</view>
 		<view class="button" hover-class="button-hover" @click="submit()"><text>注册账号</text></view>
 	</view>
@@ -143,7 +143,7 @@ export default {
 				return;
 			}
 			if (this.terms != true){
-				this.$u.toast('请阅读《用户使用协议》');
+				this.$u.toast('请阅读《软件隐私保护》');
 				return false;
 			}
 			if (this.fpValidCode.length == 0) {
@@ -181,7 +181,7 @@ export default {
 	display:flex;
 	flex-direction:row;
 	align-items:center;
-	margin-left:90rpx;
+	justify-content: center;
 	color:#666;
 }
 </style>
