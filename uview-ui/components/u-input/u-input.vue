@@ -15,6 +15,7 @@
 		<textarea
 			v-if="type == 'textarea'"
 			class="u-input__input u-input__textarea"
+			:class="{ 'disabled': disabled || type === 'select' }"
 			:style="[getStyle]"
 			:value="defaultValue"
 			:placeholder="placeholder"
@@ -36,6 +37,7 @@
 		<input
 			v-else
 			class="u-input__input"
+			:class="{ 'disabled': disabled || type === 'select' }"
 			:type="type == 'password' ? 'text' : type"
 			:style="[getStyle]"
 			:value="defaultValue"
@@ -357,6 +359,11 @@ export default {
 		padding: 10rpx 0;
 		line-height: normal;
 		flex: 1;
+	}
+	
+	&__input.disabled,
+	&__textarea.disabled {
+		pointer-events: none;
 	}
 
 	&--border {
