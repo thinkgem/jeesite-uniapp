@@ -23,6 +23,22 @@
 			<u-form-item label="复选框" prop="testCheckbox" label-width="180">
 				<js-checkbox v-model="model.testCheckbox" dict-type="sys_menu_type"></js-checkbox>
 			</u-form-item>
+			<u-form-item label="日期选择" prop="testDate" label-width="180">
+				<u-input placeholder="请输入选择日期" v-model="model.testDate" type="text"
+					@click="testDateOpen = true;" :disabled="true"></u-input>
+				<u-picker v-model="testDateOpen" mode="time" :default-time="model.testDate"
+					:params="{year: true, month: true, day: true}"
+					@confirm="model.testDate = $event.year + '-' + $event.month + '-' + $event.day"
+				></u-picker>
+			</u-form-item>
+			<u-form-item label="日期时间" prop="testDatetime" label-width="180">
+				<u-input placeholder="请输入选择日期" v-model="model.testDatetime" type="text"
+					@click="testDatetimeOpen = true;" :disabled="true"></u-input>
+				<u-picker v-model="testDatetimeOpen" mode="time" :default-time="model.testDatetime"
+					:params="{year: true, month: true, day: true, hour: true, minute: true, second: false}"
+					@confirm="model.testDatetime = $event.year + '-' + $event.month + '-' + $event.day + ' ' + $event.hour + ':' + $event.minute"
+				></u-picker>
+			</u-form-item>
 			<u-form-item label="机构选择" prop="testOffice" label-width="180">
 				<js-select v-model="model.testOffice.officeCode" :items="officeSelectList" placeholder="请选择机构" :tree="true"
 					:label-value="model.testOffice.officeName" @label-input="model.testOffice.officeName = $event"></js-select>
@@ -85,6 +101,8 @@ export default {
 			},
 			officeSelectList: [],
 			userSelectList: [],
+			testDateOpen: false,
+			testDatetimeOpen: false,
 		};
 	},
 	onLoad(params){
