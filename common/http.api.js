@@ -49,6 +49,11 @@ const install = (Vue, vm) => {
 			treeData: (params = {}) => vm.$u.get(config.adminPath+'/sys/office/treeData', params),
 		},
 		
+		// 行政区划查询
+		area: {
+			treeData: (params = {}) => vm.$u.get(config.adminPath+'/sys/area/treeData', params),
+		},
+		
 		// 增删改查例子
 		testData: {
 			form: (params = {}) => vm.$u.post(config.adminPath+'/test/testData/form', params),
