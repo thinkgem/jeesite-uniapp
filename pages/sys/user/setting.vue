@@ -1,6 +1,6 @@
 <template>
-	<view class="wrap">
-		<u-cell-group :border="false" title="消息提醒">
+	<view class="wrap setting">
+		<u-cell-group :border="false" title="消息提醒" :titleStyle="titleStyle">
 			<u-cell-item title="接受消息提醒" :arrow="false">
 				<u-switch v-model="message" slot="right-icon" class="u-m-l-20"></u-switch>
 			</u-cell-item>
@@ -9,12 +9,12 @@
 				<text slot="label">关闭后，当收到消息的时候，只显示有提示，不显示消息内容。</text>
 			</u-cell-item>
 		</u-cell-group>
-		<u-cell-group :border="false" title="声音与振动">
+		<u-cell-group :border="false" title="声音与振动" :titleStyle="titleStyle">
 			<u-cell-item title="收到消息后播放声音或振动" @click="openSettings">
 				<text slot="label">前往系统设置中，修改声音与振动</text>
 			</u-cell-item>
 		</u-cell-group>
-		<u-cell-group :border="false" title="软件更新提醒">
+		<u-cell-group :border="false" title="软件更新提醒" :titleStyle="titleStyle">
 			<u-cell-item title="软件更新提醒" :arrow="false">
 				<u-switch v-model="upgrade" slot="right-icon" class="u-m-l-20"></u-switch>
 				<text slot="label">当本软件有新版本发布时，给予提醒</text>
@@ -34,7 +34,8 @@ export default {
 		return {
 			message: true,
 			messageBar: true,
-			upgrade: true
+			upgrade: true,
+			titleStyle: {'font-size': '30rpx', 'padding': '25rpx 30rpx'}
 		};
 	},
 	methods: {
@@ -75,10 +76,5 @@ export default {
 
 page {
 	background-color: #f8f8f8;
-}
-
-/deep/ .u-cell-title {
-	padding: 25rpx 30rpx;
-	font-size: 30rpx;
 }
 </style>
