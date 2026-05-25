@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="PoweredByJeeSiteV5.0" />
+    <meta name="description" content="PoweredByJeeSiteV5.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="static/jeesite/favicon.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>JeeSite Mobile APP</title>
+    <script>
+      window.onresize = function () {
+        if (document.documentElement.clientWidth < 768) {
+          window.location.href = '../index.html#/'
+        }
+      }
+      window.onresize()
+    </script>
+    <style>
+      .mobile-model {
+        margin: 10px auto 0;
+        background-color: #fff;
+        width: 360px;
+        margin-top: calc(50vh - 350px);
+        box-sizing: border-box;
+        background-image: url(common/img/iPhoneX.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        border-radius: 30px;
+        padding: 39px 16px 30px 15px;
+      }
+      .mobile-content {
+        box-sizing: border-box;
+        width: 330px;
+        height: 612px;
+        border-bottom-left-radius: 20px;
+      }
+      .mobile-iframe {
+        height: 100%;
+        width: 100%;
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mobile-model">
+      <div class="mobile-content">
+        <iframe src="../index.html#/" class="mobile-iframe" scrolling="auto" frameborder="0"></iframe>
+      </div>
+    </div>
+  </body>
+</html>

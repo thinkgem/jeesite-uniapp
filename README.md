@@ -1,30 +1,22 @@
 <p align="center">
     <img alt="JeeSite" src="https://jeesite.com/assets/images/logo.png" width="120" height="120" style="margin-bottom: 10px;">
 </p>
-<h3 align="center" style="margin:30px 0 30px;font-weight:bold;font-size:30px;">快速开发平台 - 手机端</h3>
+<h3 align="center" style="margin:30px 0 30px;font-weight:bold;font-size:30px;">快速开发平台 - 手机端 Uni-App</h3>
 
 ## 引言
 
-JeeSite Mobile Uni-App 是 JeeSite 手机端框架/移动端框架，基于 uni-app、uView UI 实现。
+JeeSite Mobile Uni-App 基于最新的前端技术栈 uni-app + Vue 3 + TypeScript + Vite + UnoCSS 架构，使用 unibest 模版初始化，并集成 wot-ui-v2 组件库。本项目不强制依赖 HBuilderX，支持通过命令行方式运行 Web、小程序和 App 应用（推荐使用 VSCode 或 WebStorm 作为集成开发环境）。
 
-uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、Web、
-以及各种小程序（微信/支付宝/百度/头条/QQ/钉钉/淘宝）、快应用等多个平台。
-
-uView UI，是 uni-app 生态最优秀的 UI 框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水。
-
-### 新版发布
-
-uni-app + Vue 3 + TypeScript + Vite + UnoCSS 架构，使用 unibest 模版初始化，并集成 wot-ui-v2 组件库。下载地址：<https://gitee.com/thinkgem/jeesite-uniapp/tree/main/>。
+JeeSite 内置了约定式路由、Layout 布局、请求封装、请求拦截、登录拦截、UnoCSS 原子化样式、i18n 多语言等核心功能，并提供代码智能提示、自动格式化、统一配置管理、代码片段等开发辅助工具，大幅提升开发效率。
 
 ## 特性
 
-* 支持 Android，iOS，H5，微信小程序，等其它小程序平台。
-* 移动端是无 Cookie 环境的，该项目对移动端进行会话环境封装，
-* 让你像 Cookie 一样使用 token，无需特别处理，有框架帮你完成。
-* 化繁为简，封装 vuex 的繁琐，简单通过 api 即可进行 state 存取。
-* 贴心的表单组件封装，下拉框、复选框、文件上传，完美与后端 JeeSite 结合。
-* uView 提供 60+ 精选组件，功能丰富，多端兼容，让您快速集成，开箱即用。
-* 众多贴心的 JS 利器，让您飞镖在手，召之即来，百步穿杨。
+* 使用 TS + Vite + Vue3 + uni-app 一端开发，多端发布。
+* 支持 H5，Android，iOS，鸿蒙，微信小程序等其它小程序平台。
+* 封装移动端 Token 会话环境的，自动完成会话管理，有框架帮你完成。
+* Wot-UI 提供 80+ 高质量组件，功能丰富，多端兼容，让您快速集成，开箱即用。
+* 常用组件：下拉框、树选择、复选框、单选框、日期、图标、多语言、文件上传。
+* 众多贴心的 TS 利器，让您飞镖在手，召之即来，百步穿杨。
 * 众多的常用页面和布局，让您专注逻辑，事半功倍。
 * 合理使用 style 的 scoped 减少包体积大小。
 * 详尽的文档支持，现代化的演示效果。
@@ -52,92 +44,40 @@ uni-app + Vue 3 + TypeScript + Vite + UnoCSS 架构，使用 unibest 模版初�
 
 3、安卓 Android 安装包，点击下载：[JeeSite.apk](https://gitee.com/thinkgem/jeesite5/attach_files)
 
-## 快速运行
+## 本地运行
 
-1、下载并安装：<a href="https://www.dcloud.io/hbuilderx.html" target="blank">集成开发环境 HBuilderX</a>
-  （推荐，也可以使用 VSCode 或 WebStorm）
+- 执行 `pnpm i` 安装依赖
+- Web H5：`pnpm dev:h5`, 然后打开 <http://localhost:9000>。
+- 微信小程序：`pnpm dev:mp` 然后打开微信开发者工具，导入本地文件夹，选择本项目的`dist/dev/mp-weixin` 文件。
+- APP 平台：`pnpm dev:app`, 然后打开 `HBuilderX`，导入刚刚生成的`dist/dev/app` 文件夹，选择运行到模拟器(开发时优先使用)，或者运行的安卓/ios基座。(如果是 `安卓` 和 `鸿蒙` 平台，则不用这个方式，可以把整个项目导入到 HBuilderX，通过 HBuilderX 的菜单来运行到对应的平台。)
 
-2、菜单：文件 -> 导入 -> 从本地目录导入，选择 “jeesite4-uniapp” 文件夹。
+### 本地环境
 
-3、菜单：运行 -> 运行到内置浏览器（或运行到浏览器 -> Chrome 浏览器）。
+- Node.js -- >=v22.13.0
+- Pnpm -- >=10.11.0
+- VSCode -- 可选其他 IDE ：Trae、Lingma、Cursor、WebStorm 等
+- HBuilderX -- APP 的运行和发布离不开它
+- Git -- 必须有 git，否则 husky 会报错
 
-4、等待 HBuliderX 控制台编译完成后，会自动弹出手机登录页面。
+## 应用发布
 
-## 安装服务端
- 
-本项目后台服务默认连接的是 demo.jeesite.com 官网演示环境，你需要替换为你的 JeeSite 后台，步骤如下：
-
-1、安装 JeeSite 最新版：<a href="https://gitee.com/thinkgem/jeesite4#%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C" target="blank">https://gitee.com/thinkgem/jeesite4#本地运行</a>
-  （本项目支持 v4.2.1 或以上版本，若已安装，请执行 `bin/package.bat` 更新依赖）
-
-2、打开 application.yml 修改如下配置（Ajax跨域设置和与后台基础交互的请求头名）：
-
-```yml
-# Shiro 相关
-shiro:
-
-  # 是否允许跨域访问 CORS，如果允许，设置允许的域名。v4.2.3 开始支持多个域名和模糊匹配，例如：http://*.jeesite.com,http://*.jeesite.net
-  accessControlAllowOrigin: '*'
-  
-  # 允许跨域访问时 CORS，可以获取和返回的方法和请求头
-  accessControlAllowMethods: GET, POST, OPTIONS
-  accessControlAllowHeaders: content-type, x-requested-with, x-ajax, x-token, x-remember
-  accessControlExposeHeaders: x-remember
-  
-# Session 相关
-session:
-
-  # 设置接收 SessionId 请求参数和请求头名称
-  sessionIdHeaderName: x-token
-  
-  # 记住我的请求参数和请求头的名称
-  rememberMeHeaderName: x-remember
-  
-# Web 相关
-web:
-
-  # AJAX 接受参数名和请求头名
-  ajaxHeaderName: x-ajax
-  
-```
-
-3、打开手机端项目的 `/common/config.js` 修改 `config.baseUrl` 后端服务地址为你安装的 JeeSite 服务地址。
-
-## 生态系统
-
-* 分布式微服务（Spring Cloud）：<https://gitee.com/thinkgem/jeesite-cloud>
-* Flowable业务流程引擎（BPM）：<http://jeesite.com/docs/bpm/>
-* 多站点内容管理模块（CMS）：<https://jeesite.com/docs/cms/>
-* 手机端移动端：<https://gitee.com/thinkgem/jeesite-uniapp>
-* PC客户端程序：<https://gitee.com/thinkgem/jeesite-client>
-* Vue3分离版本：<https://gitee.com/thinkgem/jeesite-vue>
-* JeeSite统一认证：<https://jeesite.com/docs/oauth2-server>
-* JFlow工作流引擎：<https://gitee.com/thinkgem/jeesite-jflow>
-* Mybatis-Plus: <https://gitee.com/thinkgem/jeesite-mybatisplus>
-* Magic接口快速开发：<https://gitee.com/thinkgem/jeesite-magic-api>
-* 内外网中间件：<https://my.oschina.net/thinkgem/blog/4624519>
+- Web H5：`pnpm build:h5`，打包后的文件在 `dist/build/h5`，可以放到web服务器，如nginx运行。如果最终不是放在根目录，可以在 `manifest.config.ts` 文件的 `h5.router.base` 属性进行修改。
+- 微信小程序：`pnpm build:mp`, 打包后的文件在 `dist/build/mp-weixin`，然后通过微信开发者工具导入，并点击右上角的“上传”按钮进行上传。
+- APP 平台：`pnpm build:app`, 然后打开 `HBuilderX`，导入刚刚生成的`dist/build/app` 文件夹，选择发行 - APP云打包。(如果是 `安卓` 和 `鸿蒙` 平台，则不用这个方式，可以把整个项目导入到 HBuilderX，通过 HBuilderX 的菜单来发行到对应的平台。)
 
 ## 学习路线
 
 1. <a href="https://uniapp.dcloud.io/README" target="blank">什么是 uni-app、为什么选择 uni-app</a>
-2. <a href="https://www.dcloud.io/hbuilderx.html" target="blank">集成开发环境 HBuilderX 下载</a>
-3. <a href="https://ke.qq.com/course/3169971" target="blank">uni-app 官方视频教程</a>
-4. <a href="http://ask.dcloud.net.cn/article/35657" target="blank">如果你熟悉 h5，但不熟悉 Vue 和小程序，请看这篇白话 uni-app</a>
-5. <a href="https://uniapp.dcloud.io/vue-basics" target="blank">Vue.js 视频 + 文档教程</a>
+2. <a href="https://code.visualstudio.com/" target="blank">集成开发环境 VSCode 下载</a>
+3. <a href="https://www.dcloud.io/hbuilderx.html" target="blank">集成开发环境 HBuilderX 下载</a>
+4. <a href="https://uniapp.dcloud.net.cn/tutorial/vue3-basics.html" target="blank">uni-app vue 3 文档教程</a>
 
 ## 学习文档
 
-* <a href="https://uniapp.dcloud.io/collocation/pages" target="blank">uni-app 框架文档</a>
-* <a href="https://uniapp.dcloud.io/component/README" target="blank">uni-app 组件文档</a>
-* <a href="https://uviewui.com/components/intro.html" target="blank">uView 组件文档</a>
-* <a href="https://uviewui.com/js/intro.html" target="blank">uView JS 文档</a>
-
-## 打包发布
-
-* 打开 `/common/config.js` 找到 `config.baseUrl` 修改为正式的手机端后台服务地址
-* 阅读这篇文章：<a href="https://uniapp.dcloud.io/quickstart-hx?id=%e5%8f%91%e5%b8%83uni-app" target="blank">如何发布 uni-app 软件</a>
-* <a href="https://ask.dcloud.net.cn/article/34972" target="blank">uni-app 整包升级、冷更新</a>
-* <a href="https://ask.dcloud.net.cn/article/35667" target="blank">uni-app 资源升级、热更新</a>
+1. <a href="https://jeesite.com/docs/" target="blank">JeeSite 平台文档</a>
+2. <a href="https://uniapp.dcloud.io/collocation/pages" target="blank">uni-app 框架文档</a>
+3. <a href="https://unibest.tech/base/1-introduction" target="blank">unibast 框架文档</a>
+4. <a href="https://wot-ui.cn/guide/introduction.html" target="blank">Wot UI 2.x 文档</a>
 
 ## 授权许可协议条款
 
@@ -153,9 +93,15 @@ web:
 7. 如果你对本软件有改进，希望可以贡献给我们，共同进步。
 8. 本项目已申请软件著作权，请尊重开源，感谢阅读。
 
-## 技术服务与支持
+## 技术支持与服务
 
 * 本软件免费，我们也提供了相应的收费服务，因为：
-* 没有资金的支撑就很难得到发展，特别是一个好的产品，如果 JeeSite 帮助了您，请为我们点赞（本软件Git仓库首页，右上角点击 star 按钮，关注我们）。支持我们，您可以得到一些回报，有了这些我们会把公益事业做的更好，回报社区和社会，请给我们一些动力吧，在此非常感谢已支持我们的朋友！
-* **联系方式（官方商务）QQ：[1766571055](http://wpa.qq.com/msgrd?v=3&uin=1766571055&site=qq&menu=yes)**
-* 技术服务支持网页：<http://s.jeesite.com>
+* 没有资金的支撑就很难得到发展，特别是一个好的产品，如果 JeeSite 帮助了您，请为我们点赞。支持我们，您可以获得更多回馈，我们会把公益事业做的更好，开放更多资源，回报社区和社会。请给我们一些动力吧，在此非常感谢已支持我们的朋友！
+* **联系我们**：请访问技术支持与服务页面：<http://s.jeesite.com> 
+
+## 专业版增加的功能
+
+1. 工作流程办理
+2. 文件上传秒传
+3. 微信小程序登录
+4. 语言国际化、本地化

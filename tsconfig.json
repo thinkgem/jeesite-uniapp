@@ -1,0 +1,59 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@img/*": [
+        "./src/static/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "@dcloudio/types",
+      "@uni-helper/uni-types",
+      "@uni-helper/vite-plugin-uni-pages",
+      "miniprogram-api-typings",
+      "@wot-ui/ui/global",
+      "z-paging/types",
+      "./src/typings.d.ts"
+    ],
+    "allowJs": true,
+    "noImplicitThis": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "checkJs": false,
+    "strict": false
+  },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@uni-helper/uni-types/volar-plugin"
+    ],
+    "target": 3.4,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/**/*.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/node_modules/**",
+    "node_modules/.pnpm/@wot-ui+ui@2.0.8*/**/*",
+    "node_modules/@wot-ui/**/*"
+  ]
+}

@@ -1,7 +1,36 @@
-/unpackage/dist/*
-/unpackage/cache/*
-/unpackage/release/*
-/node_modules/*
-/.hbuilderx/*
-/.idea/*
-deploy.sh
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+.DS_Store
+dist
+*.local
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.hbuilderx
+.lingma
+.trae
+
+.stylelintcache
+.eslintcache
+
+docs/.vitepress/dist
+docs/.vitepress/cache
+
+src/types
+# 单独把这个文件排除掉，用以解决部分电脑生成的 auto-import.d.ts 的API不完整导致类型提示报错问题
+!src/types/auto-import.d.ts
+src/manifest.json
+src/pages.json

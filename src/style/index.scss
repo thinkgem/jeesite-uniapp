@@ -1,0 +1,79 @@
+// 测试用的 iconfont，可生效
+// @import './iconfont.css';
+
+.test {
+  // 可以通过 @apply 多个样式封装整体样式
+  @apply mt-4 ml-4;
+
+  padding-top: 4px;
+  color: red;
+}
+
+:root,
+page {
+  // 修改按主题色
+  // --wot-color-theme: #37c2bc;
+
+  // 修改按钮背景色
+  // --wot-button-primary-bg-color: green;
+
+  // background-color: #f8f8f8;
+}
+
+/*
+border-t-1
+由于uniapp中无法使用*选择器，使用魔法代替*，加上此规则可以简化border与divide的使用，并提升布局的兼容性
+1. 防止padding和border影响元素宽度。 (https://github.com/mozdevs/cssremedy/issues/4)
+2. 允许仅通过添加边框宽度来向元素添加边框。 (https://github.com/tailwindcss/tailwindcss/pull/116)
+3. [UnoCSS]: 允许使用css变量'--un-default-border-color'覆盖默认边框颜色
+*/
+// 这个样式有重大BUG，先去掉！！(2025-08-15)
+// :not(not),
+// ::before,
+// ::after {
+//   box-sizing: border-box; /* 1 */
+//   border-width: 0; /* 2 */
+//   border-style: solid; /* 2 */
+//   border-color: var(--un-default-border-color, #e5e7eb); /* 3 */
+// }
+
+.list-page {
+  .action {
+    height: 100%;
+    margin-right: 1px;
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 15px;
+      height: 100%;
+      color: #fff;
+      line-height: 44px;
+    }
+  }
+}
+
+.form-page {
+  padding-bottom: 140rpx;
+
+  .form-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 20rpx 0;
+    background: #fff;
+    box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    .button {
+      // width: 30%;
+      margin: 5rpx;
+    }
+  }
+}
