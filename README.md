@@ -12,6 +12,10 @@ uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编�
 
 uView UI，是 uni-app 生态最优秀的 UI 框架，全面的组件和便捷的工具会让您信手拈来，如鱼得水。
 
+### 新版发布
+
+uni-app + Vue 3 + TypeScript + Vite + UnoCSS 架构，使用 unibest 模版初始化，并集成 wot-ui-v2 组件库。下载地址：<https://gitee.com/thinkgem/jeesite-uniapp/tree/main/>。
+
 ## 特性
 
 * 支持 Android，iOS，H5，微信小程序，等其它小程序平台。
