@@ -134,7 +134,7 @@ async function handleDelete(item, index) {
       <template #top>
         <wd-search v-model="keywords" :placeholder="$t('common.searchPlaceholder')" :hide-cancel="true" @search="handleSearch" @clear="handleSearch" />
       </template>
-      <view v-for="(item, index) in list" :key="item.id" class="list-item">
+      <view v-for="(item, index) in list" :key="item.id">
         <wd-swipe-action>
           <template #right>
             <view class="action">
